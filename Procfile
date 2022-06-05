@@ -1,0 +1,1 @@
+web: java -encoding UTF-8 -jar target/myWebAppDietDiary-0.0.1-SNAPSHOT.war --deploy war-file
