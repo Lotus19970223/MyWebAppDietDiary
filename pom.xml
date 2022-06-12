@@ -12,7 +12,7 @@
 	<groupId>com.dietdiary</groupId>
 	<artifactId>myWebAppDietDiary</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>myWebAppDietDiary</name>
 	<description>A project for making a web site for keeping diet diary</description>
 	<properties>
