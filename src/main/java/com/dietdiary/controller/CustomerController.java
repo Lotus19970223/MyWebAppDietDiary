@@ -18,14 +18,17 @@ public class CustomerController {
 		mav.setViewName("customerList");
         return mav;
 	}
-	@RequestMapping("/error")
-	public String sample() {
-		return "SampleRequestMappingError";
-	}
+
 	@RequestMapping("/")
 	public String sample2() {
-		return "SampleRequestMappingDefault";
+		//コンソールに表示テスト
+		System.out.println("test!");
+		// returnで返した「Stringの文字列のファイル名」に対応した
+		// /myWebAppDietDiary/src/main/resources/templates内の
+		// ファイルを表示する
+		return "customerList";
 	}
+	/*
 	@RequestMapping("/myWebAppDietDiary/")
 	public String sample3() {
 		return "SampleRequestMappingContextRoot1";
@@ -33,5 +36,5 @@ public class CustomerController {
 	@RequestMapping("/myWebAppDietDiary")
 	public String sample4() {
 		return "SampleRequestMappingContextRoot2";
-	}
+	}*/
 }

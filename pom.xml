@@ -36,7 +36,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 			</dependency>
-			<!-- DB関連の依存をいったんコメントアウトDB関連の依存をいったんコメントアウト -->
+			<!-- DB関連の依存をいったんコメントアウト -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -45,10 +45,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
+		<!-- コメントアウト用コピペ用 <dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -74,11 +74,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+		<!-- コメントアウト用コピペ用 <dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency>コメントアウト用コピペ用 -->
 	</dependencies>
 	<build>
 		<plugins>
