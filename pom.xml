@@ -20,12 +20,23 @@
 	</properties>
 	<!-- コメントアウト用コピペ用 -->
 	<dependencies>
-		<!-- DB関連の依存をいったんコメントアウト <dependency> <groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jdbc</artifactId> </dependency> <dependency>
-			<groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-jpa</artifactId>
-			</dependency> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-jdbc</artifactId>
-			</dependency> <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-security</artifactId>
-			</dependency> DB関連の依存をいったんコメントアウト -->
+
+		<dependency> <groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jdbc</artifactId> </dependency>
+			<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			</dependency>
+			<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			</dependency>
+
+			<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			</dependency>
+			<!-- DB関連の依存をいったんコメントアウトDB関連の依存をいったんコメントアウト -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
