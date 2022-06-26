@@ -21,7 +21,15 @@ public class Customer {
     private String firstName;
     private String lastName;
 
-    protected Customer() {}
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	protected Customer() {}
 
 	public String getFirstName() {
 		return firstName;
