@@ -22,7 +22,7 @@ public class CustomerController {
 	@RequestMapping("/")
 	public String sample2() {
 		//コンソールに表示テスト
-		System.out.println("test!");
+		System.out.println("test2!");
 		System.out.println("${JDBC_DATABASE_URL}");
 		// returnで返した「Stringの文字列のファイル名」に対応した
 		// /myWebAppDietDiary/src/main/resources/templates内の
