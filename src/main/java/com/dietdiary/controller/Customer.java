@@ -1,3 +1,4 @@
+//Entityクラス
 package com.dietdiary.controller;
 
 import javax.persistence.Entity;
@@ -9,8 +10,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
-@Entity
+@Data //getter、setterメソッド等を生成→うまく動作しなかったためEclipseで生成
+@Entity //JPAのエンティティであることを示す
 @Getter
 @Setter
 public class Customer {
