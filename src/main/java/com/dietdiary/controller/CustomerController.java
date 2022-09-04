@@ -43,6 +43,15 @@ public class CustomerController {
 		// ファイルを表示する
 		return "BootStrapSample";
 	}
+	@RequestMapping("/sampleDataList")
+	public String sample4() {
+		//コンソールに表示テスト
+		System.out.println("test4!");
+		// returnで返した「Stringの文字列のファイル名」に対応した
+		// /myWebAppDietDiary/src/main/resources/templates内の
+		// ファイルを表示する
+		return "SampleDiariesDataList";
+	}
 /*	  @PostMapping(path="/add") // Map ONLY POST Requests
 	  public @ResponseBody String addNewUser (@RequestParam String name
 	      , @RequestParam String email) {
