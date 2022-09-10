@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dietdiary.entity.Customer;
-import com.dietdiary.entity.SampleDiaryEntity;
+import com.dietdiary.entity.Sample_diaries;
 
 
 
@@ -33,7 +33,7 @@ public class CustomerController {
 	public ModelAndView index2() {
 		ModelAndView mav = new ModelAndView();
 
-		Iterable<SampleDiaryEntity> sampleDiaryList = sdr.findAll();
+		Iterable<Sample_diaries> sampleDiaryList = sdr.findAll();
 		mav.addObject("sampleDiaryList", sampleDiaryList);
 		mav.setViewName("sampleDiaryList");
         return mav;

@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data //getter、setterメソッド等を生成→うまく動作しなかったためEclipseで生成
 @Entity //JPAのエンティティであることを示す
-public class SampleDiaryEntity {
+public class Sample_diaries {
 	//日付
 	//テーブルのプライマリキーに当たるプロパティに@Idのアノテーションを付与
 	@Id
