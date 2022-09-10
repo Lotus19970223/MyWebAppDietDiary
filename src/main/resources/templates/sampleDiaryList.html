@@ -8,13 +8,13 @@
 </head>
 <body>
 	テストデータの一覧を表示
-	<!-- <table>
-	<tr th:each="sampleDiaryList: ${sampleDiaryList}">
-		<td th:text="${sampleDiaryList.date}" />
-		<td th:text="${sampleDiaryList.weight}" />
-		<td th:text="${sampleDiaryList.weightForGoal}" />
-		<td th:text="${sampleDiaryList.diaryText}" />
+	<table>
+	<tr th:each="sample : ${sampleDiaryList}">
+		<td th:text="${sample.date}" />
+		<td th:text="${sample.weight}" />
+		<td th:text="${sample.weightForGoal}" />
+		<td th:text="${sample.diaryText}" />
 	</tr>
-	</table> -->
+	</table>
 </body>
 </html>
