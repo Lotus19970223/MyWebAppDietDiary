@@ -1,0 +1,21 @@
+<!-- https://www.bedroomcomputing.com/2019/11/2019-1101-heroku-springboot-postgres/ -->
+<!-- コメント -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>テストページ</title>
+</head>
+<body>
+	テストデータの一覧を表示
+	<table>
+	<!-- th:each="要素格納用の変数 : ${リスト}" で繰り返し処理 -->
+	<tr th:each="sample : ${sampleDiaryList}">
+		<td th:text="${sample.date}" />
+		<td th:text="${sample.weight}" />
+		<td th:text="${sample.weightForGoal}" />
+		<td th:text="${sample.diaryText}" />
+	</tr>
+	</table>
+</body>
+</html>
