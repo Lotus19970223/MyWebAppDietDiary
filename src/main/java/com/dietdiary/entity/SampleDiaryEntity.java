@@ -5,12 +5,14 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data //getter、setterメソッド等を生成→うまく動作しなかったためEclipseで生成
 @Entity //JPAのエンティティであることを示す
-public class Sample_diaries {
+@Table(name="sample_diaries")  //クラス名とテーブル名が異なる場合に宣言
+public class SampleDiaryEntity {
 	//日付
 	//テーブルのプライマリキーに当たるプロパティに@Idのアノテーションを付与
 	@Id

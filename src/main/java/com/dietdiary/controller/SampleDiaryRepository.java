@@ -4,8 +4,8 @@ import java.sql.Date;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.dietdiary.entity.Sample_diaries;
+import com.dietdiary.entity.SampleDiaryEntity;
 
 //
-public interface SampleDiaryRepository extends CrudRepository<Sample_diaries, Date> {
+public interface SampleDiaryRepository extends CrudRepository<SampleDiaryEntity, Date> {
 }
