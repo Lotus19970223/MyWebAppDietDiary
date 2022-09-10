@@ -1,5 +1,5 @@
 //Entityクラス
-package com.dietdiary.controller;
+package com.dietdiary.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
