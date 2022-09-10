@@ -34,6 +34,10 @@ public class CustomerController {
 		ModelAndView mav = new ModelAndView();
 
 		Iterable<SampleDiaryEntity> sampleDiaryList = sdr.findAll();
+//		https://pointsandlines.jp/server-side/java/model-and-view
+//		addObject()メソッドではView側へ渡すオブジェクトのデータを
+//		第一引数にテンプレートから参照する変数名、
+//		第二引数にオブジェクト名として格納している
 		mav.addObject("sampleDiaryList", sampleDiaryList);
 		// 「setViewNameの引数のファイル名」に対応した
 		// /myWebAppDietDiary/src/main/resources/templates内の
