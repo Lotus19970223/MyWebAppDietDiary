@@ -35,6 +35,9 @@ public class CustomerController {
 
 		Iterable<SampleDiaryEntity> sampleDiaryList = sdr.findAll();
 		mav.addObject("sampleDiaryList", sampleDiaryList);
+		// 「setViewNameの引数のファイル名」に対応した
+		// /myWebAppDietDiary/src/main/resources/templates内の
+		// ファイルを表示する
 		mav.setViewName("sampleDiaryList");
         return mav;
 	}
