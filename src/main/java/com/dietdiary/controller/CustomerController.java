@@ -1,4 +1,6 @@
 package com.dietdiary.controller;
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,8 @@ public class CustomerController {
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index2() {
 		ModelAndView mav = new ModelAndView();
+		//
+		mav.addObject("todayDate", LocalDate.now());
 
 		Iterable<SampleDiaryEntity> sampleDiaryList = sdr.findAll();
 //		https://pointsandlines.jp/server-side/java/model-and-view
