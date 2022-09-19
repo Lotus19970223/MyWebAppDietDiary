@@ -1,4 +1,6 @@
 package com.dietdiary.controller;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -38,8 +40,12 @@ public class CustomerController {
 
 		//日本（東京）の現在日時を取得
 		ZonedDateTime nowDateTimeJP = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
-		//上記で取得した日時を、変数nowDateTimeJPのオブジェクトとして登録
-		mav.addObject("nowDateTimeJP", nowDateTimeJP);
+		//現在日時から日付・時刻それぞれのオブジェクトを作成
+		LocalDate localDateJP = nowDateTimeJP.toLocalDate();
+		LocalTime localTimeJP = nowDateTimeJP.toLocalTime();
+		//上記で取得した日付・時刻を、変数localDateJP、localTimeJPのオブジェクトとして登録
+		mav.addObject("localDateJP", localDateJP);
+		mav.addObject("localTimeJP", localTimeJP);
 
 		Iterable<SampleDiaryEntity> sampleDiaryList = sdr.findAll();
 //		https://pointsandlines.jp/server-side/java/model-and-view
