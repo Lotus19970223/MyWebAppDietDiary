@@ -1,6 +1,6 @@
 package com.dietdiary.controller;
-import java.time.LocalDate;
-import java.util.Calendar;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,12 +35,11 @@ public class CustomerController {
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index2() {
 		ModelAndView mav = new ModelAndView();
-		//test
-		Calendar calendar = Calendar.getInstance();
-        System.out.println(calendar.getTime());
 
-		//今日の日付を取得し、変数todayDateのオブジェクトとして登録
-		mav.addObject("todayDate", LocalDate.now());
+		//日本（東京）の現在日時を取得
+		ZonedDateTime nowDateTimeJP = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+		//上記で取得した日時を、変数nowDateTimeJPのオブジェクトとして登録
+		mav.addObject("nowDateTimeJP", nowDateTimeJP);
 
 		Iterable<SampleDiaryEntity> sampleDiaryList = sdr.findAll();
 //		https://pointsandlines.jp/server-side/java/model-and-view
