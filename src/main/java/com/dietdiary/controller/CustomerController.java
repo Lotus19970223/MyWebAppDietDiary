@@ -1,5 +1,6 @@
 package com.dietdiary.controller;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,11 @@ public class CustomerController {
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index2() {
 		ModelAndView mav = new ModelAndView();
-		//
+		//test
+		Calendar calendar = Calendar.getInstance();
+        System.out.println(calendar.getTime());
+
+		//今日の日付を取得し、変数todayDateのオブジェクトとして登録
 		mav.addObject("todayDate", LocalDate.now());
 
 		Iterable<SampleDiaryEntity> sampleDiaryList = sdr.findAll();
