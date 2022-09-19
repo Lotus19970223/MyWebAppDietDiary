@@ -25,8 +25,9 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 目標体重：65.0kg<br>
 今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
 </p>
-<!-- CustomerController.javaで取得し、nowDateTimeJPとして登録した現在の日本の日時を表示 -->
-現在の日本の日時の表示テスト<br>
+<!-- CustomerController.javaで取得し、nowDateTimeJPとして登録した現在の日本の日時を表示
+LocalDateで取得した場合、世界標準時になるため、タイムゾーンを指定して日本の日時を取得している-->
+現在の日時の表示テスト<br>
 <!-- "|テキストの内容|"と記述すれば${}の変数式とテキストを組み合わせて表示可能
 https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <p th:text="|現在の日付：${localDateJP}|"></p>
