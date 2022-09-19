@@ -27,8 +27,9 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 </p>
 <!-- CustomerController.javaで取得し、nowDateTimeJPとして登録した現在の日本の日時を表示 -->
 現在の日本の日時の表示テスト<br>
-現在の日付："${localDateJP}"
-現在の時間："${localTimeJP}"
+<p th:text="現在の日付：${localDateJP}"></p><br>
+<p th:text="現在の時間：${localTimeJP}"></p><br>
+
 
 <!-- 参考：https://getbootstrap.jp/docs/5.0/content/tables/ -->
 <table class="table table-striped table-bordered">
