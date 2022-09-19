@@ -1,5 +1,7 @@
+<!-- Thymeleafでの現在日時取得
+https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -66,6 +68,7 @@
         <a href="#" class="text-primary">8月</a>
     9月
 
-
+<!-- 現在日時取得 -->
+<p>${#calendars.format(#calendars.createNowForTimeZone('Asia/Tokyo'), 'yyyy年MM月dd日 HH時mm分ss秒')}</p>
 </body>
 </html>
