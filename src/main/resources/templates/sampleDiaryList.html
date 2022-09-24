@@ -49,11 +49,11 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
   <!-- th:each="変数名 : コレクション" → ${sampleDiaryList}のコレクションを変数名sampleで扱う-->
     <tr th:each="sample : ${sampleDiaryList}">
       <!-- 今日の日付にのみボタンを表示したい-->
-		<!-- メモ：String型同士に変換してから比較すると正しく比較が行えたが、sample.dateとlocalDateJPを直接比較した場合は全ての日が本日と等しくないという判定になり正しく比較できなかった-->
+		<!-- メモ：String型同士に変換してから比較すると正しく比較が行えたが、sample.dateとlocalDateJPを
+		直接比較した場合は全ての日が本日と等しくないという判定になり正しく比較できなかった-->
 		<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
-		<td th:if="${#strings.toString(sample.date) != ${#strings.toString(localDateJP)}}" th:text="${sample.date}"/>
-		<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力-->
-		<td th:if="${#strings.toString(sample.date) == ${#strings.toString(localDateJP)}}" th:text="${sample.weight}"/>
+		<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力（現時点では、条件分岐が行えることの確認として日記欄の内容を出力）-->
+		<td th:text="${#strings.toString(sample.date) != #strings.toString(localDateJP)}? ${sample.date} : ${sample.diaryText}" />
 		<td th:text="${sample.weight}" />
 		<td th:text="${sample.weightForGoal}" />
 		<td th:text="${sample.diaryText}" />
