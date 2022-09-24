@@ -47,10 +47,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
   </thead>
   <tbody>
   <!-- th:each="変数名 : コレクション" → ${sampleDiaryList}のコレクションを変数名sampleで扱う-->
-    <tr th:each="sample : ${sampleDiaryList}">
+    <tr th:each="sample, stat : ${sampleDiaryList}">
       <!-- 今日の日付にのみボタンを表示したい-->
       	<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
-		<td th:text="${'2022-09-03' != '2022-09-03'}? ${sample.date} : odd" />
+		<td th:text="${stat.current}" />
 		<td th:text="${sample.weight}" />
 		<td th:text="${sample.weightForGoal}" />
 		<td th:text="${sample.diaryText}" />
