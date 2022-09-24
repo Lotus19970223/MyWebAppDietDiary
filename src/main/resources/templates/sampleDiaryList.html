@@ -37,6 +37,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <!-- 参考：https://getbootstrap.jp/docs/5.0/content/tables/ -->
 <table class="table table-striped table-bordered">
   <thead>
+  <!-- tr class="table-success"で1行目を緑色に -->
     <tr class="table-success">
       <th scope="col">日付</th>
       <th scope="col">体重</th>
@@ -45,15 +46,21 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
     </tr>
   </thead>
   <tbody>
+  <!-- th:each="変数名 : コレクション" → ${sampleDiaryList}のコレクションを変数名sampleで扱う-->
     <tr th:each="sample : ${sampleDiaryList}">
-		<td th:text="${sample.date}" />
+      <!-- 今日の日付にのみボタンを表示したい-->
+      	<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
+		<td th:if="${sample.date != ${localDateJP}}" th:text="${sample.date}"/>
+		<td th:if="${sample.date == ${localDateJP}}" th:text="${sample.date}"
+        button type="button" class="btn btn-secondary border border-dark">編集</button>
+        button type="button" class="btn btn-secondary border border-dark">保存</button>/>
 		<td th:text="${sample.weight}" />
 		<td th:text="${sample.weightForGoal}" />
 		<td th:text="${sample.diaryText}" />
 	</tr>
     <tr>
      <th scope="row">2022/9/29<br>
-         <button type="button" class="btn btn-secondary border border-dark">編集</button>
+        <button type="button" class="btn btn-secondary border border-dark">編集</button>
         <button type="button" class="btn btn-secondary border border-dark">保存</button>
     </th>
      <td>未入力</td>
