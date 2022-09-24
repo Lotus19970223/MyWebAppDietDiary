@@ -50,7 +50,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
     <tr th:each="sample : ${sampleDiaryList}">
       <!-- 今日の日付にのみボタンを表示したい-->
       	<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
-		<td th:text="${sample.date != ${localDateJP}}? ${sample.date} : odd" />
+		<td th:text="${sample.date != 2022-09-03}? ${sample.date} : odd" />
 		<td th:text="${sample.weight}" />
 		<td th:text="${sample.weightForGoal}" />
 		<td th:text="${sample.diaryText}" />
