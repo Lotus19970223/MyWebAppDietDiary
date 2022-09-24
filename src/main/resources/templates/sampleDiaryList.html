@@ -50,7 +50,13 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
     <tr th:each="sample : ${sampleDiaryList}">
       <!-- 今日の日付にのみボタンを表示したい-->
       	<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
-		<td th:text="${#strings.toString(sample.date) neq #strings.toString(localDateJP)}? ${sample.date} : ${sample.weight}" />
+      	<!-- メモ：String型同士に変換してから比較すると正しく比較が行えたが、
+      	sample.dateとlocalDateJPを直接比較した場合は全ての日が等しくないという判定になり
+      	正しく比較できなかった-->
+      	<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力-->
+		<td th:text="${#strings.toString(sample.date) neq #strings.toString(localDateJP)}? ${sample.date} : ${sample.date}<br>
+		<button type="button" class="btn btn-secondary border border-dark">編集</button>
+		<button type="button" class="btn btn-secondary border border-dark">保存</button>" </td>
 		<td th:text="${sample.weight}" />
 		<td th:text="${sample.weightForGoal}" />
 		<td th:text="${sample.diaryText}" />
