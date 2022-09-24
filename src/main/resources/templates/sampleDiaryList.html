@@ -22,7 +22,7 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 
 <p class="text-center">
 【ユーザー名】さん　　マイページ（2022年9月）<br>
-目標体重：65.1kg<br>
+目標体重：65.2kg<br>
 今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
 </p>
 <!-- コントローラー側で取得し、localDateJP、localTimeJPとして登録した現在の日本の日時を表示
@@ -50,8 +50,14 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
     <tr th:each="sample : ${sampleDiaryList}">
       <!-- 今日の日付にのみボタンを表示したい-->
       	<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
-		<td th:if="${sample.date} neq ${localDateJP}" th:text="${sample.date}"/>
-		<td th:if="${sample.date} eq ${localDateJP}" th:text="うんこ"/>
+		<div th:if="${sample.date} != ${localDateJP}">
+		<td th:text="${sample.date}"/>
+		</div>
+		<div th:if="${sample.date} == ${localDateJP}">
+		<td th:text="うんこ"/>
+		</div>
+
+
 		<td th:text="${sample.weight}" />
 		<td th:text="${sample.weightForGoal}" />
 		<td th:text="${sample.diaryText}" />
