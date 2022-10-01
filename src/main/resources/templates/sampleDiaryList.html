@@ -21,7 +21,7 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 <body>
 
 <p class="text-center">
-【ユーザー名】さん　　マイページ（2022年9月）<br>
+【ユーザー名】さん　　マイページ（2022年10月）<br>
 目標体重：55.0kg<br>
 今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
 </p>
@@ -51,8 +51,6 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
       <!-- 今日の日付にのみボタンを表示したい-->
 		<!-- メモ：String型同士に変換してから比較すると正しく比較が行えたが、sample.dateとlocalDateJPを
 		直接比較した場合は全ての日が本日と等しくないという判定になり正しく比較できなかった-->
-		<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
-		<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力（現時点では、条件分岐が行えることの確認として"表示する日付＝本日の日付の場合"を出力）-->
 		<td>
 		<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力-->
 			<div th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
@@ -69,30 +67,14 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<td th:text="${sample.weightForGoal}" />
 		<td th:text="${sample.diaryText}" />
 	</tr>
-    <tr>
-     <th scope="row">2022/9/29<br>
-        <button type="button" class="btn btn-secondary border border-dark">編集</button>
-        <button type="button" class="btn btn-secondary border border-dark">保存</button>
-    </th>
-     <td>未入力</td>
-     <td>未入力</td>
-     <td>未入力</td>
-    </tr>
-          <tr>
-     <th scope="row">2022/9/30</th>
-     <td>-</td>
-     <td>-</td>
-     <td>-</td>
-    </tr>
   </tbody>
 </table>
-（今日の日付を2022/9/29とした場合のサンプル）<br>
-    <br>
-2022年　<a href="#" class="text-primary">5月</a>
-        <a href="#" class="text-primary">6月</a>
-    <a href="#" class="text-primary">7月</a>
-        <a href="#" class="text-primary">8月</a>
-    9月
+<br>
+2022年  <a href="#" class="text-primary">5月</a>
+		 <a href="#" class="text-primary">6月</a>
+		 <a href="#" class="text-primary">7月</a>
+		 <a href="#" class="text-primary">8月</a>
+		 10月
 
 
 </body>
