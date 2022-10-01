@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<td th:text="${#strings.toString(sample.date) != #strings.toString(localDateJP)}? ${sample.date} : <button type="button" class="btn btn-secondary border border-dark">編集</button>" />
+</body>
+</html>

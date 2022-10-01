@@ -22,7 +22,7 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 
 <p class="text-center">
 【ユーザー名】さん　　マイページ（2022年9月）<br>
-目標体重：65.0kg<br>
+目標体重：55.0kg<br>
 今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
 </p>
 <!-- コントローラー側で取得し、localDateJP、localTimeJPとして登録した現在の日本の日時を表示
@@ -53,7 +53,18 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		直接比較した場合は全ての日が本日と等しくないという判定になり正しく比較できなかった-->
 		<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
 		<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力（現時点では、条件分岐が行えることの確認として"表示する日付＝本日の日付の場合"を出力）-->
-		<td th:text="${#strings.toString(sample.date) != #strings.toString(localDateJP)}? ${sample.date} : '表示する日付＝本日の日付の場合'" />
+		<td>
+		<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力-->
+			<div th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)">
+			${sample.date}</div>
+			<button th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)"
+			 type="button" class="btn btn-secondary border border-dark">編集</button>
+			<button th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)"
+			 type="button" class="btn btn-secondary border border-dark">保存</button>
+		<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
+			<div th:if="${#strings.toString(sample.date) != #strings.toString(localDateJP)"
+				th:text="${sample.date}"></div>
+		</td>
 		<td th:text="${sample.weight}" />
 		<td th:text="${sample.weightForGoal}" />
 		<td th:text="${sample.diaryText}" />
