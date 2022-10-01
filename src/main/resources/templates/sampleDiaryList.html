@@ -48,11 +48,11 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
   <tbody>
   <!-- th:each="変数名 : コレクション" → ${sampleDiaryList}のコレクションを変数名sampleで扱う-->
     <tr th:each="sample : ${sampleDiaryList}">
-      <!-- 今日の日付にのみボタンを表示したい-->
 		<!-- メモ：String型同士に変換してから比較すると正しく比較が行えたが、sample.dateとlocalDateJPを
 		直接比較した場合は全ての日が本日と等しくないという判定になり正しく比較できなかった-->
+		<!-- 日付欄の出力-->
 		<td>
-		<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力-->
+		<!-- 「表示する日付＝本日の日付」の場合、日付および編集ボタン、保存ボタンを出力-->
 			<div th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
 				th:text="${sample.date}"></div>
 			<button th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
@@ -63,8 +63,11 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<div th:if="${#strings.toString(sample.date) != #strings.toString(localDateJP)}"
 				th:text="${sample.date}"></div>
 		</td>
+		<!-- 体重欄の出力-->
 		<td th:text="${sample.weight}" />
+		<!-- 目標体重まで欄の出力-->
 		<td th:text="${sample.weightForGoal}" />
+		<!-- 日記欄の出力-->
 		<td th:text="${sample.diaryText}" />
 	</tr>
   </tbody>
@@ -74,8 +77,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 <a href="#" class="text-primary">6月</a>
 		 <a href="#" class="text-primary">7月</a>
 		 <a href="#" class="text-primary">8月</a>
+		 <a href="#" class="text-primary">9月</a>
 		 10月
-
-
 </body>
 </html>
