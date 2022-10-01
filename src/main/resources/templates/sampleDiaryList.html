@@ -55,14 +55,14 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力（現時点では、条件分岐が行えることの確認として"表示する日付＝本日の日付の場合"を出力）-->
 		<td>
 		<!-- 「表示する日付＝本日の日付」の場合、日付およびボタンを出力-->
-			<div th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)">
-			${sample.date}</div>
-			<button th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)"
+			<div th:if="${#strings.toString(sample.date) eq #strings.toString(localDateJP)"
+				th:text="${sample.date}"></div>
+			<button th:if="${#strings.toString(sample.date) eq #strings.toString(localDateJP)"
 			 type="button" class="btn btn-secondary border border-dark">編集</button>
-			<button th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)"
+			<button th:if="${#strings.toString(sample.date) eq #strings.toString(localDateJP)"
 			 type="button" class="btn btn-secondary border border-dark">保存</button>
 		<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
-			<div th:if="${#strings.toString(sample.date) != #strings.toString(localDateJP)"
+			<div th:if="${#strings.toString(sample.date) neq #strings.toString(localDateJP)"
 				th:text="${sample.date}"></div>
 		</td>
 		<td th:text="${sample.weight}" />
