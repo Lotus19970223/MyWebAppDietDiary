@@ -56,9 +56,9 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<div th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
 				th:text="${sample.date}"></div>
 			<input type="button" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
-			 type="button" class="btn btn-secondary border border-dark">編集
+			  class="btn btn-secondary border border-dark">編集
 			<input type="button" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
-			 type="button" class="btn btn-secondary border border-dark">保存
+			  class="btn btn-secondary border border-dark">保存
 		<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
 			<div th:if="${#strings.toString(sample.date) != #strings.toString(localDateJP)}"
 				th:text="${sample.date}"></div>
