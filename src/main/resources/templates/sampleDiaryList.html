@@ -55,10 +55,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<!-- 「表示する日付＝本日の日付」の場合、日付および編集ボタン、保存ボタンを出力-->
 			<div th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
 				th:text="${sample.date}"></div>
-			<button th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
-			 type="button" class="btn btn-secondary border border-dark">編集</button>
-			<button th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
-			 type="button" class="btn btn-secondary border border-dark">保存</button>
+			<input type="button" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
+			 type="button" class="btn btn-secondary border border-dark">編集
+			<input type="button" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
+			 type="button" class="btn btn-secondary border border-dark">保存
 		<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
 			<div th:if="${#strings.toString(sample.date) != #strings.toString(localDateJP)}"
 				th:text="${sample.date}"></div>
@@ -70,7 +70,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<!-- 日記欄の出力-->
 		<td>
 			<p th:text="${sample.diaryText}" />
-			<form>
+			<form th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
 			<input class="form-control" type="text" name="diaryText" id="diaryText">
 			</div>
@@ -86,5 +86,9 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 <a href="#" class="text-primary">8月</a>
 		 <a href="#" class="text-primary">9月</a>
 		 10月
+<!-- JavaScriptの処理-->
+<script>
+
+</script>
 </body>
 </html>
