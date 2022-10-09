@@ -27,7 +27,7 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 </p>
 <!-- コントローラー側で取得し、localDateJP、localTimeJPとして登録した現在の日本の日時を表示
 LocalDate.now()で取得した場合、世界標準時になるため、タイムゾーンを指定して日本の日時を取得している-->
-現在の日時の表示テスト v1<br>
+現在の日時の表示テスト<br>
 <!-- "|テキストの内容|"と記述すれば${}の変数式とテキストを組み合わせて表示可能
 https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <p th:text="|現在の日付：${localDateJP}|"></p>
@@ -55,7 +55,8 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<!-- 「表示する日付＝本日の日付」の場合、日付および編集ボタン、保存ボタンを出力-->
 			<div th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
 				th:text="${sample.date}"></div>
-			<input type="button" id="editButton" onclick="openEditForm" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
+			<!-- onclick属性の値で、クリック時に実行するJavaScriptの処理を指定-->
+			<input type="button" id="editButton" onclick="openEditForm()" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
 			  class="btn btn-secondary border border-dark" value="編集">
 			<input type="button" id="saveButton" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
 			  class="btn btn-secondary border border-dark" value="保存">
@@ -70,9 +71,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<!-- 日記欄の出力-->
 		<td>
 			<p th:text="${sample.diaryText}" />
+			<!-- 入力フォームは編集ボタンを押下した際に表示されるよう変更予定-->
 			<form th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
-			<input class="form-control" type="text" name="diaryText" id="diaryText">
+			<input class="form-control" type="text" name="diaryText" id="diaryText" value="ここにテキストを入力してください">
 			</div>
 			</form>
 		</td>
@@ -89,7 +91,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <!-- JavaScriptの処理-->
 <script>
 function openEditForm() {
-    alert("ボタンがクリックされました！");
+    alert("仮の処理としてアラートの表示を行っています。「日記欄に入力フォームを表示する処理」を作成したら差し替え予定です。");
   }
 </script>
 </body>
