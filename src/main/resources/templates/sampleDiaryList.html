@@ -69,12 +69,11 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<td th:text="${sample.weightForGoal}" />
 		<!-- 日記欄の出力-->
 		<td>
+			<p th:text="${sample.diaryText}" />
 			<form>
 			<div class="mb-2">
-			<label class="form-label" for="address">Address</label>
-			<input class="form-control" type="text" name="address" id="address">
+			<input class="form-control" type="text" name="diaryText" id="diaryText">
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</td>
 	</tr>
