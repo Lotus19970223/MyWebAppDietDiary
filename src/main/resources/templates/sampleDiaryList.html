@@ -78,10 +78,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<!-- 日記欄の出力-->
 		<td>
 			<p th:text="${sample.diaryText}" />
-			<!-- 入力フォームは編集ボタンを押下した際に表示されるよう変更予定-->
+			<!-- 編集ボタンを押下した際に入力フォームが表示されるようにする-->
 			<form th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
-			<input id="diaryText" name="diaryText" class="form-control" type="text" value="ここにテキストを入力してください">
+			<input id="diaryText" name="diaryText" class="form-control" type="text" placeholder="ここにテキストを入力してください">
 			</div>
 			</form>
 		</td>
