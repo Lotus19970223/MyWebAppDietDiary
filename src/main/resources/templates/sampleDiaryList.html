@@ -16,6 +16,13 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 	integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 	crossorigin="anonymous">
   </script>
+<style type="text/css">
+/* ヘッダー埋め込み形式でCSSを記述
+参考1：https://willcloud.jp/knowhow/whats_css/
+参考2：https://allabout.co.jp/gm/gc/23973/
+idがdiaryTextの要素を初期状態で非表示にしている*/
+#diaryText { visibility: hidden; }
+</style>
 <title>マイページサンプル</title>
 </head>
 <body>
@@ -74,7 +81,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- 入力フォームは編集ボタンを押下した際に表示されるよう変更予定-->
 			<form th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
-			<input class="form-control" type="text" name="diaryText" id="diaryText" value="ここにテキストを入力してください">
+			<input id="diaryText" name="diaryText" class="form-control" type="text" value="ここにテキストを入力してください">
 			</div>
 			</form>
 		</td>
@@ -90,8 +97,12 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 10月
 <!-- JavaScriptの処理-->
 <script>
+/* 編集ボタン押下時の処理
+idがdiaryTextの要素（日記欄の入力フォーム）を表示状態にする
+参考：https://allabout.co.jp/gm/gc/23973/    */
 function openEditForm() {
-    alert("仮の処理としてアラートの表示を行っています。「日記欄に入力フォームを表示する処理」を作成したら差し替え予定です。");
+	document.getElementById('diaryText').style.visibility = 'visible';
+	alert("仮の処理としてアラートの表示を行っています。「日記欄に入力フォームを表示する処理」を作成したら差し替え予定です。");
   }
 </script>
 </body>
