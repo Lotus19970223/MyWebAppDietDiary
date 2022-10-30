@@ -60,6 +60,14 @@ public class CustomerController {
         return mav;
 	}
 
+	@RequestMapping("/sampleDBUpdate")
+	//ModelAndViewオブジェクトを返す
+	public ModelAndView index3() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("customerList");
+		return mav;
+	}
+
 	@RequestMapping("/")
 	public String sample2() {
 		//コンソールに表示テスト
