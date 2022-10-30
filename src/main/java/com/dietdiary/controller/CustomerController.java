@@ -95,12 +95,16 @@ public class CustomerController {
 	SampleDiaryEntity updateSampleDiary(SampleDiaryEntity sde, String randomNumberStr) {
 		//日記エンティティの持つ日付の値が2022-10-01の場合
 		if(sde.getDate().toString() == "2022-10-01") {
+			//test
+			System.out.println(sde.getDate());
 			//引数で受け取った乱数（文字列化済）を日記欄にセット
 			sde.setDiaryText(randomNumberStr);
 			//日記欄を変更したエンティティをセット（戻り値はセット後のエンティティ）
 			//戻り値であるセット後のエンティティをそのままメソッドの戻り値とする
 			return sampleDiaryRepository.save(sde);
 		}
+		//test
+		System.out.println(sde.getDate());
 		//日付の値が2022-10-01でない場合そのまま日記エンティティを返す
 		return sde;
 	}
