@@ -101,6 +101,7 @@ public class CustomerController {
 			sde.setDiaryText(randomNumberStr);
 			//日記欄を変更したエンティティをセット（戻り値はセット後のエンティティ）
 			//戻り値であるセット後のエンティティをそのままメソッドの戻り値とする
+			System.out.println(sampleDiaryRepository.save(sde) + "kore is omeate");
 			return sampleDiaryRepository.save(sde);
 		}
 		//test
