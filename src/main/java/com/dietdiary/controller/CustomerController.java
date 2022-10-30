@@ -64,7 +64,7 @@ public class CustomerController {
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index3() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("customerList");
+		mav.setViewName("sampleDBUpdate");
 		return mav;
 	}
 
