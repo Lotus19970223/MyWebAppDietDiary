@@ -94,7 +94,7 @@ public class CustomerController {
 	//DB更新用（乱数）のサンプルのメソッド
 	SampleDiaryEntity updateSampleDiary(SampleDiaryEntity sde, String randomNumberStr) {
 		//日記エンティティの持つ日付の値が2022-10-01の場合
-		if(sde.getDate().toString() == "2022-10-01") {
+		if(sde.getDate().toString().equals("2022-10-01")) {
 			//test
 			System.out.println(sde.getDate());
 			//引数で受け取った乱数（文字列化済）を日記欄にセット
