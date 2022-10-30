@@ -105,7 +105,7 @@ public class CustomerController {
 			return sampleDiaryRepository.save(sde);
 		}
 		//test
-		System.out.println(sde.getDate());
+		//System.out.println(sde.getDate());
 		//日付の値が2022-10-01でない場合そのまま日記エンティティを返す
 		return sde;
 	}
