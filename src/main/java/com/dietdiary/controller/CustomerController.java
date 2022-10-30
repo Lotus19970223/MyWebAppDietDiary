@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,7 +64,14 @@ public class CustomerController {
 	@RequestMapping("/sampleDBUpdate")
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index3() {
+		//0～999のどれかで乱数を生成 RandomクラスのnextInt() を使用
+		Random rand = new Random();
+	    int randomNumber = rand.nextInt(1000);
+	    //日記欄に書き込む用に乱数をString型に変換
+	    String randomNumberStr = Integer.toString(randomNumber);
 		ModelAndView mav = new ModelAndView();
+	    //View側へ乱数を文字列にしたオブジェクトを渡す
+	    mav.addObject("randomNumberStr", randomNumberStr);
 		mav.setViewName("sampleDBUpdate");
 		return mav;
 	}
