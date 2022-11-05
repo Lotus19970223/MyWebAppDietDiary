@@ -142,7 +142,7 @@ public class CustomerController {
 		    	}
 	        }
 		    //DB内容表示ページに遷移（保存ボタン押下後に再表示）
-			mav.setViewName("/sampleDBRead");
+			mav.setViewName("sampleDBRead");
 			return mav;
 		}
 	SampleDiaryEntity entityUpdateForFormSave(SampleDiaryEntity sde) {
