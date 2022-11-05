@@ -117,13 +117,15 @@ public class CustomerController {
 		SampleDiaryEntity formSave(SampleDiaryEntity sde) {
 			//日記エンティティの持つ日付の値が2022-11-01の場合
 			// ==だと参照型なので等しい判定にならない equals()を使用
-			if(sde.getDate().toString().equals("2022-11-01")) {
+			System.out.println(sde + "←が表示されていればsdeはnullではない");
+			System.out.println(sde.getDate() + "←が表示されていればsde.getDate()はnullではない");
+		/* if( sde.getDate().toString().equals("2022-11-01")) {
 				//引数で受け取った乱数（文字列化済）を日記欄にセット
 				//sde.setDiaryText(randomNumberStr);
 				//日記欄を変更したエンティティをセット（戻り値はセット後のエンティティ）
 				//戻り値であるセット後のエンティティをそのままメソッドの戻り値とする
 				return sampleDiaryRepository.save(sde);
-			}
+			} */
 			//日付の値が2022-11-01でない場合そのまま日記エンティティを返す
 			return sde;
 		}
