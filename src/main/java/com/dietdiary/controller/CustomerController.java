@@ -7,7 +7,6 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -113,8 +112,8 @@ public class CustomerController {
 
 	//保存ボタン押下時のDB更新用（入力フォームに入力した値）のメソッド
 	//post送信時に呼び出される
-	@PostMapping("/formSave")
 	//引数のSampleDiaryEntityは保存ボタン押下時に送信されたもの
+	@RequestMapping("/formSave")
 	public void formSave(SampleDiaryEntity sdeFromForm) {
 		//ModelAndView mav = new ModelAndView();
 			System.out.println(sdeFromForm + "←が表示されていればsdeはnullではない");
@@ -133,7 +132,7 @@ public class CustomerController {
 			//DBから取得した日記のエンティティのうち本日の日付のもののみ処理対象にする
 		    for(SampleDiaryEntity sde : sampleDiaryList){
 		    	//日付判定の際、NullPointerExceptionを防止
-		    	if(sde.getDate() != null && sde.getDate().equals(localDateJP)){
+		    	if(sde.getDate() != null && sde.getDate().toString().equals(localDateJP.toString())){
 		    	//本日の日付の日記のエンティティに対して、引数のSampleDiaryEntity
 		    	//に保存された日記欄（入力フォームのもの）で値を更新する
 		    		sde.setDiaryText(sdeFromForm.getDiaryText());
