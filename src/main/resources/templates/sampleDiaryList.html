@@ -39,7 +39,7 @@ LocalDate.now()で取得した場合、世界標準時になるため、タイ�
 https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <p th:text="|現在の日付：${localDateJP}|"></p>
 <p th:text="|現在の時間：${localTimeJP}|"></p>
-<a href="https://my-web-app-diet-diary.herokuapp.com/sampleDBUpdate">DB更新サンプルページのリンク（アクセスすると10/01の日記欄を0～999の乱数で更新します）</a>
+<a href="https://my-web-app-diet-diary.herokuapp.com/sampleDBUpdate">DB更新サンプルページのリンク（アクセスすると11/01の日記欄を0～999の乱数で更新します）</a>
 <br>
 <!-- 参考：https://getbootstrap.jp/docs/5.0/content/tables/ -->
 <table class="table table-striped table-bordered">
@@ -89,7 +89,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
-			<input id="diaryText" name="diaryText" class="form-control" type="text" placeholder="ここにテキストを入力してください">
+			<textarea cols="50" rows="10" id="diaryText" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
 			</div>
 			</form>
 		</td>
