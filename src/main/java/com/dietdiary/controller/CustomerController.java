@@ -114,21 +114,53 @@ public class CustomerController {
 	//保存ボタン押下時のDB更新用（入力フォームに入力した値）のメソッド
 	//post送信時に呼び出される
 	@PostMapping("/formSave")
-		SampleDiaryEntity formSave(SampleDiaryEntity sde) {
-			//日記エンティティの持つ日付の値が2022-11-01の場合
-			// ==だと参照型なので等しい判定にならない equals()を使用
-			System.out.println(sde + "←が表示されていればsdeはnullではない");
-			System.out.println(sde.getDate() + "←が表示されていればsde.getDate()はnullではない");
-		/* if( sde.getDate().toString().equals("2022-11-01")) {
-				//引数で受け取った乱数（文字列化済）を日記欄にセット
-				//sde.setDiaryText(randomNumberStr);
-				//日記欄を変更したエンティティをセット（戻り値はセット後のエンティティ）
-				//戻り値であるセット後のエンティティをそのままメソッドの戻り値とする
-				return sampleDiaryRepository.save(sde);
-			} */
-			//日付の値が2022-11-01でない場合そのまま日記エンティティを返す
-			return sde;
+	//引数のSampleDiaryEntityは保存ボタン押下時に送信されたもの
+	public ModelAndView formSave(SampleDiaryEntity sdeFromForm) {
+		ModelAndView mav = new ModelAndView();
+			System.out.println(sdeFromForm + "←が表示されていればsdeはnullではない");
+			//getDate()含めgetDiaryText()以外は引数のsdeではnull
+			//引数のsdeでは保存ボタン押下時に送信した値がgetDiaryText()で取得可
+			System.out.println(sdeFromForm.getDate() + "←が表示されていればsde.getDate()はnullではない");
+
+			//DBのデータをエンティティのリストとして取得
+		    Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findAll();
+
+			//日本（東京）の現在日時を取得
+			ZonedDateTime nowDateTimeJP = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+			//現在日時から日付のオブジェクトを作成
+			LocalDate localDateJP = nowDateTimeJP.toLocalDate();
+
+			//DBから取得した日記のエンティティのうち本日の日付のもののみ処理対象にする
+		    for(SampleDiaryEntity sde : sampleDiaryList){
+		    	//日付判定の際、NullPointerExceptionを防止
+		    	if(sde.getDate() != null && sde.getDate().equals(localDateJP)){
+		    	//本日の日付の日記のエンティティに対して、引数のSampleDiaryEntity
+		    	//に保存された日記欄（入力フォームのもの）で値を更新する
+		    		sde.setDiaryText(sdeFromForm.getDiaryText());
+		    		//日記欄を更新したエンティティでDBを更新
+		    		sampleDiaryRepository.save(sde);
+		    	}
+	        }
+		    //DB内容表示ページに遷移（保存ボタン押下後に再表示）
+			mav.setViewName("sampleDiaryList");
+			return mav;
 		}
+	SampleDiaryEntity entityUpdateForFormSave(SampleDiaryEntity sde) {
+		//日記エンティティの持つ日付の値が2022-11-01の場合
+		// ==だと参照型なので等しい判定にならない equals()を使用
+		System.out.println(sde + "←が表示されていればsdeはnullではない");
+		System.out.println(sde.getDate() + "←が表示されていればsde.getDate()はnullではない");
+	/* if( sde.getDate().toString().equals("2022-11-01")) {
+			//引数で受け取った乱数（文字列化済）を日記欄にセット
+			//sde.setDiaryText(randomNumberStr);
+			//日記欄を変更したエンティティをセット（戻り値はセット後のエンティティ）
+			//戻り値であるセット後のエンティティをそのままメソッドの戻り値とする
+			return sampleDiaryRepository.save(sde);
+		} */
+		//日付の値が2022-11-01でない場合そのまま日記エンティティを返す
+		return sde;
+	}
+
 
 
 	@RequestMapping("/")
