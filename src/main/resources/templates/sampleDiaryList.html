@@ -28,7 +28,7 @@ idがdiaryTextの要素を初期状態で非表示にしている*/
 <body>
 
 <p class="text-center">
-【ユーザー名】さん　　マイページ（2022年10月）<br>
+【ユーザー名】さん　　マイページ（2022年11月）<br>
 目標体重：55.0kg<br>
 今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
 </p>
@@ -101,6 +101,12 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <script>
 /* 編集ボタン押下時の処理 */
 function openEditForm() {
+/* idがdiaryTextの要素（日記欄の入力フォーム）を表示状態にする
+参考：https://allabout.co.jp/gm/gc/23973/    */
+	document.getElementById('diaryText').style.visibility = 'visible';
+  }
+/* 編集ボタン押下時の処理 */
+function saveEditForm() {
 /* idがdiaryTextの要素（日記欄の入力フォーム）を表示状態にする
 参考：https://allabout.co.jp/gm/gc/23973/    */
 	document.getElementById('diaryText').style.visibility = 'visible';

@@ -52,7 +52,10 @@ public class CustomerController {
 		mav.addObject("localDateJP", localDateJP);
 		mav.addObject("localTimeJP", localTimeJP);
 
-		Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findAll();
+		//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
+		//JPAにはRepositoryインターフェースに、命名規則に従ったメソッド名を書くとSQLを自動生成する機能がある
+		//日記レコード一覧を取得する際にDate順にソートする
+		Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findAllByOrderByDateAsc();
 //		https://pointsandlines.jp/server-side/java/model-and-view
 //		addObject()メソッドではView側へ渡すオブジェクトのデータを
 //		第一引数にテンプレートから参照する変数名、
@@ -91,24 +94,23 @@ public class CustomerController {
 		return mav;
 	}
 
+	//参考：https://qiita.com/kuro227/items/a16e22ac12afe7442a3d
 	//DB更新用（乱数）のサンプルのメソッド
 	SampleDiaryEntity updateSampleDiary(SampleDiaryEntity sde, String randomNumberStr) {
 		//日記エンティティの持つ日付の値が2022-10-01の場合
+		// ==だと参照型なので等しい判定にならない equals()を使用
 		if(sde.getDate().toString().equals("2022-10-01")) {
-			//test
-			System.out.println(sde.getDate());
 			//引数で受け取った乱数（文字列化済）を日記欄にセット
 			sde.setDiaryText(randomNumberStr);
 			//日記欄を変更したエンティティをセット（戻り値はセット後のエンティティ）
 			//戻り値であるセット後のエンティティをそのままメソッドの戻り値とする
-			System.out.println(sampleDiaryRepository.save(sde) + "kore is omeate");
 			return sampleDiaryRepository.save(sde);
 		}
-		//test
-		//System.out.println(sde.getDate());
 		//日付の値が2022-10-01でない場合そのまま日記エンティティを返す
 		return sde;
 	}
+
+
 
 	@RequestMapping("/")
 	public String sample2() {
@@ -138,17 +140,4 @@ public class CustomerController {
 		// ファイルを表示する
 		return "SampleDiariesDataList";
 	}
-/*	  @PostMapping(path="/add") // Map ONLY POST Requests
-	  public @ResponseBody String addNewUser (@RequestParam String name
-	      , @RequestParam String email) {
-	    // @ResponseBody means the returned String is the response, not a view name
-	    // @RequestParam means it is a parameter from the GET or POST request
-
-	    Customer c = new Customer();
-	    c.setId(name);
-	    c.setEmail(email);
-	    CustomerRepository.save(c);
-	    return "Saved";
-	  }
-*/
 }
