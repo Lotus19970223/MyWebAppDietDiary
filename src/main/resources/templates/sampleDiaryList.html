@@ -81,7 +81,13 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<td>
 			<p th:text="${sample.diaryText}" />
 			<!-- 編集ボタンを押下した際に入力フォームが表示されるようにする-->
-			<form th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
+			<!-- action属性でデータの送信先を指定 ここではpost送信（method属性）-->
+			<!-- 参考：https://developer.mozilla.org/ja/docs/Learn/Forms/Sending_and_retrieving_form_data -->
+			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
+			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
+			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
+			<form th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}"
+			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
 			<input id="diaryText" name="diaryText" class="form-control" type="text" placeholder="ここにテキストを入力してください">
 			</div>
