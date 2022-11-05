@@ -114,7 +114,7 @@ public class CustomerController {
 	//post送信時に呼び出される
 	//引数のSampleDiaryEntityは保存ボタン押下時に送信されたもの
 	@RequestMapping("/formSave")
-	public void formSave(SampleDiaryEntity sdeFromForm) {
+	public String formSave(SampleDiaryEntity sdeFromForm) {
 		//ModelAndView mav = new ModelAndView();
 			System.out.println(sdeFromForm + "←が表示されていればsdeはnullではない");
 			//getDate()含めgetDiaryText()以外は引数のsdeではnull
@@ -140,6 +140,7 @@ public class CustomerController {
 		    		sampleDiaryRepository.save(sde);
 		    	}
 	        }
+		    return "redirect:/sampleDBRead";
 		    //DB内容表示ページに遷移（保存ボタン押下後に再表示）
 			//mav.setViewName("sampleDBRead");
 			//return mav;
