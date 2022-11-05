@@ -97,16 +97,16 @@ public class CustomerController {
 	//参考：https://qiita.com/kuro227/items/a16e22ac12afe7442a3d
 	//DB更新用（乱数）のサンプルのメソッド
 	SampleDiaryEntity updateSampleDiary(SampleDiaryEntity sde, String randomNumberStr) {
-		//日記エンティティの持つ日付の値が2022-10-01の場合
+		//日記エンティティの持つ日付の値が2022-11-01の場合
 		// ==だと参照型なので等しい判定にならない equals()を使用
-		if(sde.getDate().toString().equals("2022-10-01")) {
+		if(sde.getDate().toString().equals("2022-11-01")) {
 			//引数で受け取った乱数（文字列化済）を日記欄にセット
 			sde.setDiaryText(randomNumberStr);
 			//日記欄を変更したエンティティをセット（戻り値はセット後のエンティティ）
 			//戻り値であるセット後のエンティティをそのままメソッドの戻り値とする
 			return sampleDiaryRepository.save(sde);
 		}
-		//日付の値が2022-10-01でない場合そのまま日記エンティティを返す
+		//日付の値が2022-11-01でない場合そのまま日記エンティティを返す
 		return sde;
 	}
 
