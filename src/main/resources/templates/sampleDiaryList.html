@@ -91,7 +91,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
-			<input th:object="${SampleDiaryEntity.diaryText}" id="diaryText" name="diaryText" class="form-control" type="text" placeholder="ここにテキストを入力してください">
+			<input id="diaryText" name="diaryText" class="form-control" type="text" placeholder="ここにテキストを入力してください">
 			</div>
 			</form>
 		</td>
