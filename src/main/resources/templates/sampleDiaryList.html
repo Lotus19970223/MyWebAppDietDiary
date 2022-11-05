@@ -67,7 +67,9 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- onclick属性の値で、クリック時に実行するJavaScriptの処理を指定-->
 			<input type="button" id="editButton" onclick="openEditForm()" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
 			  class="btn btn-secondary border border-dark" value="編集">
-			<input type="button" id="saveButton" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
+			  <!-- 参考：https://qiita.com/Emily-wata/items/cdd4baf2e50333ccea90-->
+			  <!-- formタグにidを付与し、buttonにformクラスを追加し、formタグのidと同じものをつけて紐付ける-->
+			<input type="button" id="saveButton" form="inputForm" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
 			  class="btn btn-secondary border border-dark" value="保存">
 		<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
 			<div th:if="${#strings.toString(sample.date) != #strings.toString(localDateJP)}"
@@ -86,10 +88,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
-			<form th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}"
+			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
-			<input id="diaryText" name="diaryText" class="form-control" type="text" placeholder="ここにテキストを入力してください">
+			<input th:object="${SampleDiaryEntity.diaryText} id="diaryText" name="diaryText" class="form-control" type="text" placeholder="ここにテキストを入力してください">
 			</div>
 			</form>
 		</td>
@@ -111,7 +113,7 @@ function openEditForm() {
 参考：https://allabout.co.jp/gm/gc/23973/    */
 	document.getElementById('diaryText').style.visibility = 'visible';
   }
-/* 編集ボタン押下時の処理 */
+/* 保存ボタン押下時の処理 */
 function saveEditForm() {
 /* idがdiaryTextの要素（日記欄の入力フォーム）を表示状態にする
 参考：https://allabout.co.jp/gm/gc/23973/    */
