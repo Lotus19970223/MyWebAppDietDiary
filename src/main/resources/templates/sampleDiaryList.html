@@ -41,8 +41,6 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <p th:text="|現在の時間：${localTimeJP}|"></p>
 <a href="https://my-web-app-diet-diary.herokuapp.com/sampleDBUpdate">DB更新サンプルページのリンク（アクセスすると10/01の日記欄を0～999の乱数で更新します）</a>
 <br>
-※更新後の11/01のレコードはページ最下部にあります
-<br>
 <!-- 参考：https://getbootstrap.jp/docs/5.0/content/tables/ -->
 <table class="table table-striped table-bordered">
   <thead>
@@ -69,7 +67,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			  class="btn btn-secondary border border-dark" value="編集">
 			  <!-- 参考：https://qiita.com/Emily-wata/items/cdd4baf2e50333ccea90-->
 			  <!-- formタグにidを付与し、buttonにformクラスを追加し、formタグのidと同じものをつけて紐付ける-->
-			<input type="button" id="saveButton" form="inputForm" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
+			<input type="submit" id="saveButton" form="inputForm" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"
 			  class="btn btn-secondary border border-dark" value="保存">
 		<!-- 「表示する日付≠本日の日付」の場合、日付のみ出力-->
 			<div th:if="${#strings.toString(sample.date) != #strings.toString(localDateJP)}"
