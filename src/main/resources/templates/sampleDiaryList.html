@@ -20,7 +20,8 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 /* ヘッダー埋め込み形式でCSSを記述
 参考1：https://willcloud.jp/knowhow/whats_css/
 参考2：https://allabout.co.jp/gm/gc/23973/
-idがdiaryTextの要素を初期状態で非表示にしている*/
+idがweightおよびdiaryTextの要素を初期状態で非表示にしている*/
+#weight { visibility: hidden; }
 #diaryText { visibility: hidden; }
 </style>
 <title>マイページサンプル</title>
@@ -78,12 +79,9 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<!-- 体重欄の出力-->
 		<td>
 			<p th:text="${sample.weight}" />
-			<!-- 編集ボタンを押下した際に入力フォームが表示されるようにする-->
+			<!-- 編集ボタンを押下した際に体重の入力フォームが表示されるようにする-->
 			<!-- action属性でデータの送信先を指定 ここではpost送信（method属性）-->
-			<!-- 参考：https://developer.mozilla.org/ja/docs/Learn/Forms/Sending_and_retrieving_form_data -->
-			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
-			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
@@ -123,7 +121,8 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <script>
 /* 編集ボタン押下時の処理 */
 function openEditForm() {
-/* idがdiaryTextの要素（日記欄の入力フォーム）を表示状態にする
+/* idがweightの要素（体重の入力フォーム）および
+ diaryTextの要素（日記欄の入力フォーム）を表示状態にする
 参考：https://allabout.co.jp/gm/gc/23973/    */
 	document.getElementById('weight').style.visibility = 'visible';
 	document.getElementById('diaryText').style.visibility = 'visible';
