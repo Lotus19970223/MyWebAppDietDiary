@@ -16,6 +16,7 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 	integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 	crossorigin="anonymous">
   </script>
+
 <style type="text/css">
 /* ヘッダー埋め込み形式でCSSを記述
 参考1：https://willcloud.jp/knowhow/whats_css/
@@ -83,7 +84,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- action属性でデータの送信先を指定 ここではpost送信（method属性）-->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 			<div class="mb-2">
-			<textarea form="inputForm" id="inputForm2" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
+			<textarea form="inputForm" id="weight" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="weight" class="form-control" placeholder="今日の体重を入力してください"></textarea>
 			</div>
 		</td>
@@ -101,7 +102,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
 			<div class="mb-2">
-			<textarea cols="10" rows="2" id="diaryText" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
+			<textarea cols="10" rows="2" id="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
 			</div>
 			</form>
 		</td>
