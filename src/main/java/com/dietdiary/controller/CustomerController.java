@@ -116,18 +116,17 @@ public class CustomerController {
 	@RequestMapping("/formSave")
 	public String formSave(SampleDiaryEntity sdeFromForm) {
 		//ModelAndView mav = new ModelAndView();
+		//日本（東京）の現在日時を取得
+		ZonedDateTime nowDateTimeJP = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+		//現在日時から日付のオブジェクトを作成
+		LocalDate localDateJP = nowDateTimeJP.toLocalDate();
 			System.out.println(sdeFromForm + "←が表示されていればsdeはnullではない");
-			//getDate()含めgetDiaryText()以外は引数のsdeではnull
-			//引数のsdeでは保存ボタン押下時に送信した値がgetDiaryText()で取得可
+			//getDate()含め、getDiaryText()以外は引数のsdeFromFormではnull
+			//引数のsdeFromFormでは、保存ボタン押下時に送信した値がgetDiaryText()で取得可
 			System.out.println(sdeFromForm.getDate() + "←が表示されていればsde.getDate()はnullではない");
 
 			//DBのデータをエンティティのリストとして取得
 		    Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findAll();
-
-			//日本（東京）の現在日時を取得
-			ZonedDateTime nowDateTimeJP = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
-			//現在日時から日付のオブジェクトを作成
-			LocalDate localDateJP = nowDateTimeJP.toLocalDate();
 
 			//DBから取得した日記のエンティティのうち本日の日付のもののみ処理対象にする
 		    for(SampleDiaryEntity sde : sampleDiaryList){
@@ -139,29 +138,17 @@ public class CustomerController {
 		    		//日記欄を更新したエンティティでDBを更新
 		    		sampleDiaryRepository.save(sde);
 		    	}
+		    	//本日の日付でない場合は処理は無し
 	        }
-		    return "redirect:/sampleDBRead";
 		    //DB内容表示ページに遷移（保存ボタン押下後に再表示）
-			//mav.setViewName("sampleDBRead");
+		    return "redirect:/sampleDBRead";
+
+		    //下記の処理では、テーブル内の値がすべてnullになってしまう
+		    //（@RequestMapping("/sampleDBRead")のメソッド内の処理が行われてDBから値が入る前にページが開かれるため）
+
+		    //mav.setViewName("sampleDBRead");
 			//return mav;
 		}
-	SampleDiaryEntity entityUpdateForFormSave(SampleDiaryEntity sde) {
-		//日記エンティティの持つ日付の値が2022-11-01の場合
-		// ==だと参照型なので等しい判定にならない equals()を使用
-		System.out.println(sde + "←が表示されていればsdeはnullではない");
-		System.out.println(sde.getDate() + "←が表示されていればsde.getDate()はnullではない");
-	/* if( sde.getDate().toString().equals("2022-11-01")) {
-			//引数で受け取った乱数（文字列化済）を日記欄にセット
-			//sde.setDiaryText(randomNumberStr);
-			//日記欄を変更したエンティティをセット（戻り値はセット後のエンティティ）
-			//戻り値であるセット後のエンティティをそのままメソッドの戻り値とする
-			return sampleDiaryRepository.save(sde);
-		} */
-		//日付の値が2022-11-01でない場合そのまま日記エンティティを返す
-		return sde;
-	}
-
-
 
 	@RequestMapping("/")
 	public String sample2() {
