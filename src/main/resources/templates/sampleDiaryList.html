@@ -84,7 +84,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 			<div class="mb-2">
 			<textarea form="inputForm" id="inputForm2" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
-			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" id="weight" name="weight" class="form-control" placeholder="今日の体重を入力してください"></textarea>
+			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="weight" class="form-control" placeholder="今日の体重を入力してください"></textarea>
 			</div>
 		</td>
 		<!-- 目標体重まで欄の出力-->
