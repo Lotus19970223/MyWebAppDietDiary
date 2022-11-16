@@ -99,10 +99,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
-			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}"
-			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}">
+			<form>
 			<div class="mb-2">
-			<textarea cols="10" rows="2" id="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
+			<textarea form="inputForm" id="diaryText" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
+			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
 			</div>
 			</form>
 		</td>
