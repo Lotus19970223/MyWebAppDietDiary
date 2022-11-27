@@ -182,7 +182,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // エラーメッセージのテキスト
             errMsgDiaryText.textContent = '日記欄が入力されていません';
             // クラスを追加(フォームの枠線を赤くする)
-            diaryText.classList.add('input-invalid');
+            errMsgDiaryText.classList.add('input-invalid');
             // 後続の処理を止める
             return;
         }else{
