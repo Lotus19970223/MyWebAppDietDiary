@@ -113,6 +113,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<td th:text="${sample.weightForGoal}" />
 		<!-- 日記欄の出力-->
 		<td>
+			<div class="errMsgDiaryText"></div>
 			<p th:text="${sample.diaryText}" />
 			<!-- 編集ボタンを押下した際に日記欄の入力フォームが表示されるようにする-->
 			<!-- th:action属性でデータの送信先を指定 送信方式（method属性）はpost送信-->
@@ -158,10 +159,11 @@ function saveEditForm() {
   }
 
 /* バリデーションの処理
-参考：https://tsuchippo.com/programming-js-validation  */
+参考：https://tsuchippo.com/programming-js-validation
+	https://tsuchippo.com/validation/index.html*/
 window.addEventListener('DOMContentLoaded', () => {
 
-    //保存ボタンの要素を取得
+    //保存ボタン（入力フォーム）の要素を取得
     const saveButton = document.querySelector('#saveButton');
     console.log(saveButton);
     //保存ボタンの要素にクリックイベントを設定する
@@ -170,11 +172,11 @@ window.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         // 日記欄の空欄チェック
-        // フォームの要素を取得
-        const diaryText = document.querySelector('#diaryText');
+        // 入力された文字列を取得
+        const diaryText = document.querySelector('#diaryText').value;
         console.log(diaryText);
         // エラーメッセージを表示させる要素を取得
-        const errMsgDiaryText = document.querySelector('#diaryText');
+        const errMsgDiaryText = document.querySelector('.errMsgDiaryText');
         if(!diaryText.value){
         	console.log(diaryText.value);
             // クラスを追加(エラーメッセージを表示する)
@@ -189,7 +191,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // エラーメッセージのテキストに空文字を代入
             errMsgDiaryText.textContent ='';
             // クラスを削除
-            errMsgDiaryText.classList.remove('input-invalid');
+            diaryText.classList.remove('input-invalid');
         }
     }, false);
 }, false);
