@@ -157,7 +157,8 @@ function saveEditForm() {
 	document.getElementById('diaryText').style.visibility = 'visible';*/
   }
 
-/* バリデーションの処理 */
+/* バリデーションの処理
+参考：https://tsuchippo.com/programming-js-validation  */
 window.addEventListener('DOMContentLoaded', () => {
 
     //保存ボタンの要素を取得
@@ -173,7 +174,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const diaryText = document.querySelector('#diaryText');
         console.log(diaryText);
         // エラーメッセージを表示させる要素を取得
-        const errMsgDiaryText = document.querySelector('.diaryText');
+        const errMsgDiaryText = document.querySelector('#diaryText');
         if(!diaryText.value){
         	console.log(diaryText.value);
             // クラスを追加(エラーメッセージを表示する)
