@@ -124,6 +124,8 @@ public class CustomerController {
 			//getDate()含め、getDiaryText()以外は引数のsdeFromFormではnull
 			//引数のsdeFromFormでは、保存ボタン押下時に送信した値がgetDiaryText()で取得可
 			System.out.println(sdeFromForm.getDate() + "←が表示されていればsde.getDate()はnullではない");
+			System.out.println(sdeFromForm.getWeight() + "←が表示されていればsde.getWeight()はnullではない");
+			System.out.println(sdeFromForm.getDiaryText() + "←が表示されていればsde.getDiaryText()はnullではない");
 
 			//DBのデータをエンティティのリストとして取得
 		    Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findAll();

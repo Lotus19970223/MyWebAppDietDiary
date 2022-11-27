@@ -21,12 +21,29 @@ https://qiita.com/niwasawa/items/4f250d98fba6050d8039 -->
 /* ヘッダー埋め込み形式でCSSを記述
 参考1：https://willcloud.jp/knowhow/whats_css/
 参考2：https://allabout.co.jp/gm/gc/23973/
+
 idがweightおよびdiaryTextの要素を初期状態で非表示にしている*/
 #weight { visibility: hidden; }
 #diaryText { visibility: hidden; }
+
+/* バリデーションにかかったとき用の表示 */
+.form-invalid {
+    color: #f50000;
+    font-size: 12px;
+    padding-left: 12px;
+}
+
+.input-invalid {
+    border: 1px solid #f50000;
+}
+
+
 </style>
+
 <title>マイページサンプル</title>
+
 </head>
+
 <body>
 
 <p class="text-center">
@@ -36,13 +53,16 @@ idがweightおよびdiaryTextの要素を初期状態で非表示にしている
 <br>
 保存ボタンをクリックすると、日記欄を更新してこのページを再表示します。
 </p>
+
 <!-- コントローラー側で取得し、localDateJP、localTimeJPとして登録した現在の日本の日時を表示
 LocalDate.now()で取得した場合、世界標準時になるため、タイムゾーンを指定して日本の日時を取得している-->
 現在の日時の表示テスト<br>
+
 <!-- "|テキストの内容|"と記述すれば${}の変数式とテキストを組み合わせて表示可能
 https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <p th:text="|現在の日付：${localDateJP}|"></p>
 <p th:text="|現在の時間：${localTimeJP}|"></p>
+
 <a href="https://my-web-app-diet-diary.herokuapp.com/sampleDBUpdate">DB更新サンプルページのリンク（アクセスすると11/01の日記欄を0～999の乱数で更新します）</a>
 <br>
 <!-- 参考：https://getbootstrap.jp/docs/5.0/content/tables/ -->
@@ -81,9 +101,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<td>
 			<p th:text="${sample.weight}" />
 			<!-- 編集ボタンを押下した際に体重の入力フォームが表示されるようにする-->
-			<!-- action属性でデータの送信先を指定 ここではpost送信（method属性）-->
+			<div class="mb-2" class="weight">
+			<!-- textareaタグのth:action属性でデータの送信先を指定-->
+			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
-			<div class="mb-2">
 			<textarea form="inputForm" id="weight" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="weight" class="form-control" placeholder="今日の体重を入力してください"></textarea>
 			</div>
@@ -93,14 +114,15 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<!-- 日記欄の出力-->
 		<td>
 			<p th:text="${sample.diaryText}" />
-			<!-- 編集ボタンを押下した際に入力フォームが表示されるようにする-->
-			<!-- action属性でデータの送信先を指定 ここではpost送信（method属性）-->
+			<!-- 編集ボタンを押下した際に日記欄の入力フォームが表示されるようにする-->
+			<!-- th:action属性でデータの送信先を指定 送信方式（method属性）はpost送信-->
 			<!-- 参考：https://developer.mozilla.org/ja/docs/Learn/Forms/Sending_and_retrieving_form_data -->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}">
-			<div class="mb-2">
+			<div class="mb-2" class="diaryText">
+			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<textarea form="inputForm" id="diaryText" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
 			</div>
@@ -116,6 +138,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 <a href="#" class="text-primary">8月</a>
 		 <a href="#" class="text-primary">9月</a>
 		 10月
+
 <!-- JavaScriptの処理-->
 <script>
 /* 編集ボタン押下時の処理 */
@@ -126,12 +149,47 @@ function openEditForm() {
 	document.getElementById('weight').style.visibility = 'visible';
 	document.getElementById('diaryText').style.visibility = 'visible';
   }
+
 /* 保存ボタン押下時の処理 */
 function saveEditForm() {
 /* idがdiaryTextの要素（日記欄の入力フォーム）を表示状態にする
 参考：https://allabout.co.jp/gm/gc/23973/
 	document.getElementById('diaryText').style.visibility = 'visible';*/
   }
+
+/* バリデーションの処理 */
+window.addEventListener('DOMContentLoaded', () => {
+
+    //保存ボタンの要素を取得
+    const saveButton = document.querySelector('.saveButton');
+
+    //保存ボタンの要素にクリックイベントを設定する
+    saveButton.addEventListener('click', (e) => {
+        // デフォルトアクションをキャンセル
+        e.preventDefault();
+
+        // 日記欄の空欄チェック
+        // フォームの要素を取得
+        const diaryText = document.querySelector('#diaryText');
+        // エラーメッセージを表示させる要素を取得
+        const errMsgDiaryText = document.querySelector('.diaryText');
+        if(!diaryText.value){
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgName.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgName.textContent = '日記欄が入力されていません';
+            // クラスを追加(フォームの枠線を赤くする)
+            name.classList.add('input-invalid');
+            // 後続の処理を止める
+            return;
+        }else{
+            // エラーメッセージのテキストに空文字を代入
+            errMsgName.textContent ='';
+            // クラスを削除
+            name.classList.remove('input-invalid');
+        }
+    }, false);
+}, false);
 </script>
 </body>
 </html>
