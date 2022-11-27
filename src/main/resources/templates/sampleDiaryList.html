@@ -101,7 +101,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<td>
 			<p th:text="${sample.weight}" />
 			<!-- 編集ボタンを押下した際に体重の入力フォームが表示されるようにする-->
-			<div class="mb-2" class="weight">
+			<div class="mb-2">
 			<!-- textareaタグのth:action属性でデータの送信先を指定-->
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
@@ -121,7 +121,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}">
-			<div class="mb-2" class="diaryText">
+			<div class="mb-2">
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<textarea form="inputForm" id="diaryText" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
