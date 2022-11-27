@@ -177,8 +177,8 @@ window.addEventListener('DOMContentLoaded', () => {
         console.log(diaryText);
         // エラーメッセージを表示させる要素を取得
         const errMsgDiaryText = document.querySelector('.errMsgDiaryText');
-        if(!diaryText.value){
-        	console.log(diaryText.value);
+        if(!diaryText){
+        	console.log(diaryText);
             // クラスを追加(エラーメッセージを表示する)
             errMsgDiaryText.classList.add('form-invalid');
             // エラーメッセージのテキスト
