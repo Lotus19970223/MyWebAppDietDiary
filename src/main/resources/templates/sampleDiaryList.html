@@ -120,10 +120,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
-			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}">
+			<form onsubmit="foo();" id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}">
 			<div class="mb-2">
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
-			<div class="errMsgDiaryText" id="diaryTextValidation" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"></div>
+			<div class="errMsgDiaryText" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"></div>
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<textarea form="inputForm" id="diaryText" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
@@ -161,12 +161,12 @@ function saveEditForm() {
 	document.getElementById('diaryText').style.visibility = 'visible';*/
   }
 
+
 /* バリデーションの処理
 参考：https://tsuchippo.com/programming-js-validation
 	https://tsuchippo.com/validation/index.html*/
-window.addEventListener('DOMContentLoaded', () => {
-
-    //保存ボタン（入力フォーム）の要素を取得
+function validation() {
+	//保存ボタン（入力フォーム）の要素を取得
     const saveButton = document.querySelector('#saveButton');
     console.log(saveButton);
     //保存ボタンの要素にクリックイベントを設定する
@@ -198,7 +198,10 @@ window.addEventListener('DOMContentLoaded', () => {
             errMsgDiaryText.classList.remove('input-invalid');
         }
     }, false);
-}, false);
+}
+
+
+window.addEventListener('DOMContentLoaded', validation(), false);
 </script>
 </body>
 </html>
