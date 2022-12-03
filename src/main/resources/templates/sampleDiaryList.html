@@ -182,6 +182,7 @@ function validation() {
         const errMsgDiaryText = document.querySelector('.errMsgDiaryText');
         console.log(errMsgDiaryText);
         if(!diaryText){
+        	e.preventDefault();
         	console.log(diaryText);
             // クラスを追加(エラーメッセージを表示する)
             errMsgDiaryText.classList.add('form-invalid');
