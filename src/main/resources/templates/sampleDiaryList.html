@@ -122,7 +122,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}">
 			<div class="mb-2">
-			<div class="errMsgDiaryText"></div>
+			<div class="errMsgDiaryText" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"></div>
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<textarea form="inputForm" id="diaryText" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
