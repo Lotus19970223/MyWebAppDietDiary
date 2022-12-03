@@ -105,6 +105,8 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- textareaタグのth:action属性でデータの送信先を指定-->
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
+			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
+			<div class="errMsgWeight" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"></div>
 			<textarea form="inputForm" id="weight" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="weight" class="form-control" placeholder="今日の体重を入力してください"></textarea>
 			</div>
@@ -171,27 +173,39 @@ function validation() {
     console.log(saveButton);
     //保存ボタンの要素にクリックイベントを設定する
     saveButton.addEventListener('click', (e) => {
-        // デフォルトアクションをキャンセル
-        //e.preventDefault();
-
-        // 日記欄の空欄チェック
+        // 体重欄・日記欄の空欄チェック
         // 入力された文字列を取得
+        const weight = document.querySelector('#weight').value;
         const diaryText = document.querySelector('#diaryText').value;
-        console.log(diaryText);
         // エラーメッセージを表示させる要素を取得
+        const errMsgWeight = document.querySelector('.errMsgWeight');
         const errMsgDiaryText = document.querySelector('.errMsgDiaryText');
-        console.log(errMsgDiaryText);
-        if(!diaryText){
+        // 体重欄が空欄の場合
+        if(!weight){
+        	// 入力が空の場合、デフォルトアクション（フォーム送信）をキャンセル
         	e.preventDefault();
-        	console.log(diaryText);
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgWeight.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgWeight.textContent = '体重欄が入力されていません';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgWeight.classList.add('input-invalid');
+        }else{
+            // エラーメッセージのテキストに空文字を代入
+            errMsgWeight.textContent ='';
+            // クラスを削除
+            errMsgWeight.classList.remove('input-invalid');
+        }
+        // 日記欄が空欄の場合
+        if(!diaryText){
+        	// 入力が空の場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
             // クラスを追加(エラーメッセージを表示する)
             errMsgDiaryText.classList.add('form-invalid');
             // エラーメッセージのテキスト
             errMsgDiaryText.textContent = '日記欄が入力されていません';
             // クラスを追加(フォームの枠線を赤くする)
             errMsgDiaryText.classList.add('input-invalid');
-            // 後続の処理を止める
-            return false;
         }else{
             // エラーメッセージのテキストに空文字を代入
             errMsgDiaryText.textContent ='';
