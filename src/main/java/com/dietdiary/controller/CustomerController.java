@@ -164,7 +164,8 @@ public class CustomerController {
 		    	//日付判定の際、NullPointerExceptionを防止
 		    	if(sde.getDate() != null && sde.getDate().toString().equals(localDateJP.toString())){
 		    	//本日の日付の日記のエンティティに対して、引数のSampleDiaryEntity
-		    	//に保存された日記欄（入力フォームのもの）で値を更新する
+		    	//に保存された体重欄・日記欄（入力フォームのもの）で値を更新する
+		    		sde.setWeight(sdeFromForm.getWeight());
 		    		sde.setDiaryText(sdeFromForm.getDiaryText());
 		    		//日記欄を更新したエンティティでDBを更新
 		    		sampleDiaryRepository.save(sde);
