@@ -123,7 +123,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<form id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}">
 			<div class="mb-2">
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
-			<div class="errMsgDiaryText" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"></div>
+			<div class="errMsgDiaryText" id="diaryTextValidation" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"></div>
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<textarea form="inputForm" id="diaryText" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
 			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
@@ -190,7 +190,7 @@ window.addEventListener('DOMContentLoaded', () => {
             // クラスを追加(フォームの枠線を赤くする)
             errMsgDiaryText.classList.add('input-invalid');
             // 後続の処理を止める
-            //return;
+            return;
         }else{
             // エラーメッセージのテキストに空文字を代入
             errMsgDiaryText.textContent ='';
