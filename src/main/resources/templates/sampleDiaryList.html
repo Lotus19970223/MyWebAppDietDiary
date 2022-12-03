@@ -120,7 +120,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 			<!-- 参考：https://qiita.com/morioheisei/items/96d71871dbd798bc5cac -->
-			<form onsubmit="foo();" id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}">
+			<form onsubmit="return validation();" id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}">
 			<div class="mb-2">
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
 			<div class="errMsgDiaryText" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"></div>
@@ -197,10 +197,9 @@ function validation() {
             // クラスを削除
             errMsgDiaryText.classList.remove('input-invalid');
         }
-    }, false);
+    }, true);
 }
-
-
+/* バリデーションの処理を読み込みが完了したときに追加 */
 window.addEventListener('DOMContentLoaded', validation(), false);
 </script>
 </body>
