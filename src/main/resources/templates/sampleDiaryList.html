@@ -71,7 +71,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
   <!-- tr class="table-success"で1行目を緑色に -->
     <tr class="table-success">
       <th scope="col">日付</th>
-      <th scope="col">体重</th>
+      <th scope="col">体重（0.01kg）</th>
       <th scope="col">目標体重まで</th>
       <th scope="col">日記欄（食べた物などを記録）</th>
     </tr>
@@ -109,7 +109,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			<div class="errMsgWeight" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"></div>
 			<!-- 0.01単位の数値のみ入力可（type="number" step="0.01"で指定） -->
 			<input type="number" step="0.01" form="inputForm" id="weight" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
-			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" name="weight" class="form-control" placeholder="今日の体重を入力してください（0.01kg単位で半角数字のみ入力可）"></input>
+			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" name="weight" class="form-control" placeholder="今日の体重を入力してください（半角数字のみ入力可）"></input>
 			</div>
 		</td>
 		<!-- 目標体重まで欄の出力-->
