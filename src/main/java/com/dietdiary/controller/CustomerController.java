@@ -67,6 +67,35 @@ public class CustomerController {
 		mav.setViewName("sampleDiaryList");
         return mav;
 	}
+	@RequestMapping("/sampleDBReadArchive")
+	//ModelAndViewオブジェクトを返す
+	public ModelAndView index4() {
+		ModelAndView mav = new ModelAndView();
+
+		//日本（東京）の現在日時を取得
+		ZonedDateTime nowDateTimeJP = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+		//現在日時から日付・時刻それぞれのオブジェクトを作成
+		LocalDate localDateJP = nowDateTimeJP.toLocalDate();
+		LocalTime localTimeJP = nowDateTimeJP.toLocalTime();
+		//上記で取得した日付・時刻を、変数localDateJP、localTimeJPのオブジェクトとして登録
+		mav.addObject("localDateJP", localDateJP);
+		mav.addObject("localTimeJP", localTimeJP);
+
+		//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
+		//JPAにはRepositoryインターフェースに、命名規則に従ったメソッド名を書くとSQLを自動生成する機能がある
+		//日記レコード一覧を取得する際にDate順にソートする
+		Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findAllByOrderByDateAsc();
+//		https://pointsandlines.jp/server-side/java/model-and-view
+//		addObject()メソッドではView側へ渡すオブジェクトのデータを
+//		第一引数にテンプレートから参照する変数名、
+//		第二引数にオブジェクト名として格納している
+		mav.addObject("sampleDiaryList", sampleDiaryList);
+		// 「setViewNameの引数のファイル名」に対応した
+		// /myWebAppDietDiary/src/main/resources/templates内の
+		// ファイルを表示する
+		mav.setViewName("sampleDiaryListArchive");
+        return mav;
+	}
 
 	@RequestMapping("/sampleDBUpdate")
 	//ModelAndViewオブジェクトを返す
