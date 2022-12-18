@@ -30,5 +30,5 @@ public interface SampleDiaryRepository extends CrudRepository<SampleDiaryEntity,
 	@Query(value = "select * from SAMPLE_DIARIES where date_trunc('month', date) = TO_DATE(?1, ?2) order by date",
             nativeQuery = true)
 	//下記メソッドを呼び出す際に現在の年月とフォーマットを指定して使用する
-	Iterable<SampleDiaryEntity> findDiaryRecordsByNowYearMonth(String nowYearMonth, String format);
+	Iterable<SampleDiaryEntity> findDiaryRecordsByYearMonth(String nowYearMonth, String format);
 }
