@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +52,14 @@ public class CustomerController {
 		//上記で取得した日付・時刻を、変数localDateJP、localTimeJPのオブジェクトとして登録
 		mav.addObject("localDateJP", localDateJP);
 		mav.addObject("localTimeJP", localTimeJP);
+		//現在年月のみを文字列で表すオブジェクトを作成
+		DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("yyyy-MM");
+		String yearMonthLocalDateJPStr = localDateJP.format(yearMonthFormat);
 
 		//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
 		//JPAにはRepositoryインターフェースに、命名規則に従ったメソッド名を書くとSQLを自動生成する機能がある
-		//日記レコード一覧を取得する際にDate順にソートする
-		Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findAllByOrderByDateAsc();
+		//現在の年月のレコードを取得する 現在の年月とフォーマット（いずれも文字列）を渡して使用
+		Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findDiaryRecordsByNowYearMonth(yearMonthLocalDateJPStr, "yyyy-MM");
 //		https://pointsandlines.jp/server-side/java/model-and-view
 //		addObject()メソッドではView側へ渡すオブジェクトのデータを
 //		第一引数にテンプレートから参照する変数名、
@@ -70,6 +74,7 @@ public class CustomerController {
 	@RequestMapping("/sampleDBReadArchive")
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index4() {
+		//月を指定せずに全データを取得する
 		ModelAndView mav = new ModelAndView();
 
 		//日本（東京）の現在日時を取得
@@ -93,7 +98,7 @@ public class CustomerController {
 		// 「setViewNameの引数のファイル名」に対応した
 		// /myWebAppDietDiary/src/main/resources/templates内の
 		// ファイルを表示する
-		mav.setViewName("sampleDiaryListArchive");
+		mav.setViewName("sampleDiaryList");
         return mav;
 	}
 
