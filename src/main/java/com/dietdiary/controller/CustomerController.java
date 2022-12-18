@@ -39,7 +39,7 @@ public class CustomerController {
 		mav.setViewName("customerList");
         return mav;
 	}
-	@RequestMapping("/sampleDBRead")
+	@RequestMapping("/sampleMyPageThisMonth")
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index2() {
 		ModelAndView mav = new ModelAndView();
@@ -68,7 +68,7 @@ public class CustomerController {
 		// 「setViewNameの引数のファイル名」に対応した
 		// /myWebAppDietDiary/src/main/resources/templates内の
 		// ファイルを表示する
-		mav.setViewName("sampleDiaryList");
+		mav.setViewName("sampleMyPageThisMonth");
         return mav;
 	}
 	@RequestMapping("/sampleDBReadArchive")

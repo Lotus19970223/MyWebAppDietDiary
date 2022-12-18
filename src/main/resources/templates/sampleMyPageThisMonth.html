@@ -47,23 +47,19 @@ idがweightおよびdiaryTextの要素を初期状態で非表示にしている
 <body>
 
 <p class="text-center">
-【ユーザー名】さん　　マイページ（2022年11月）<br>
+【ユーザー名】さん　　マイページ（2022年12月）<br>
 目標体重：55.0kg<br>
 今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
 <br>
 保存ボタンをクリックすると、日記欄を更新してこのページを再表示します。
 </p>
 
-<!-- コントローラー側で取得し、localDateJP、localTimeJPとして登録した現在の日本の日時を表示
+<!-- コントローラー側で取得し、localDateJP、localTimeJPとして現在の日本の日時を登録している
 LocalDate.now()で取得した場合、世界標準時になるため、タイムゾーンを指定して日本の日時を取得している-->
-現在の日時の表示テスト<br>
 
 <!-- "|テキストの内容|"と記述すれば${}の変数式とテキストを組み合わせて表示可能
 https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
-<p th:text="|現在の日付：${localDateJP}|"></p>
-<p th:text="|現在の時間：${localTimeJP}|"></p>
 
-<a href="https://my-web-app-diet-diary.herokuapp.com/sampleDBUpdate">DB更新サンプルページのリンク（アクセスすると12/01の日記欄を0～999の乱数で更新します）</a>
 <br>
 <!-- 参考：https://getbootstrap.jp/docs/5.0/content/tables/ -->
 <table class="table table-striped table-bordered">
@@ -137,13 +133,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
   </tbody>
 </table>
 <br>
-2022年  <a href="#" class="text-primary">5月</a>
-		 <a href="#" class="text-primary">6月</a>
-		 <a href="#" class="text-primary">7月</a>
-		 <a href="#" class="text-primary">8月</a>
-		 <a href="#" class="text-primary">9月</a>
-		 <a href="#" class="text-primary">10月</a>
-		 <a href="#" class="text-primary">11月</a>
+2022年   <a href="#" class="text-primary">11月</a>
 		 12月
 
 <!-- JavaScriptの処理-->
