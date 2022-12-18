@@ -172,7 +172,7 @@ public class CustomerController {
 			//戻り値であるセット後のエンティティをそのままメソッドの戻り値とする
 			return sampleDiaryRepository.save(sde);
 		}
-		//日付の値が2022-11-01でない場合そのまま日記エンティティを返す
+		//日付の値が2022-12-01でない場合そのまま日記エンティティを返す
 		return sde;
 	}
 
@@ -210,7 +210,7 @@ public class CustomerController {
 		    	//本日の日付でない場合は処理は無し
 	        }
 		    //DB内容表示ページに遷移（保存ボタン押下後に再表示）
-		    return "redirect:/sampleDBRead";
+		    return "redirect:/sampleMyPageThisMonth";
 
 		    //下記の処理では、テーブル内の値がすべてnullになってしまう
 		    //（@RequestMapping("/sampleDBRead")のメソッド内の処理が行われてDBから値が入る前にページが開かれるため）
