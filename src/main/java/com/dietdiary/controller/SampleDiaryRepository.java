@@ -27,7 +27,7 @@ public interface SampleDiaryRepository extends CrudRepository<SampleDiaryEntity,
 	//日記レコード一覧を取得する際にDate順にソートする 現在の年月のレコードを取得する
 	//参考：https://postgresweb.com/postgresql-date-trunc  date列の値を日単位まで切り捨ててから判定する
 	//      https://workmemo.techblog.jp/archives/9550585.html
-	@Query(value = "select * from SAMPLE_DIARIES where date_trunc('day', date) = TO_DATE(?1, ?2) ORDER BY date",
+	@Query(value = "select * from SAMPLE_DIARIES where date_trunc('month', date) = TO_DATE(?1, ?2) order by date",
             nativeQuery = true)
 	//下記メソッドを呼び出す際に現在の年月とフォーマットを指定して使用する
 	Iterable<SampleDiaryEntity> findDiaryRecordsByNowYearMonth(String nowYearMonth, String format);
