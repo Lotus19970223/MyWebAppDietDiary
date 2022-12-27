@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dietdiary.entity.Customer;
 import com.dietdiary.entity.SampleDiaryEntity;
+import com.dietdiary.entity.UserEntity;
 import com.dietdiary.service.SampleService;
 
 
@@ -27,6 +28,7 @@ public class CustomerController {
 	//Repositoryに@Autowiredを付けることでインスタンスが DI コンテナから渡され、new することなくメソッドを呼び出せるようになる
 	//https://qiita.com/kuro227/items/a16e22ac12afe7442a3d
 	@Autowired SampleDiaryRepository sampleDiaryRepository;
+	@Autowired UserRepository userRepository;
 	@Autowired SampleService sampleService;
 
 	@RequestMapping("/hello")
@@ -56,6 +58,10 @@ public class CustomerController {
 		DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("yyyy-MM");
 		String yearMonthLocalDateJPStr = localDateJP.format(yearMonthFormat);
 
+		// usersレコードを取得する 主キーのIDで検索するため1件（サンプル）のみ取得
+		Iterable<UserEntity> userEntity = userRepository.findUserRecordByUserID(1);
+		//View側にuserEntityを渡す
+		mav.addObject("userEntity", userEntity);
 		//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
 		//JPAにはRepositoryインターフェースに、命名規則に従ったメソッド名を書くとSQLを自動生成する機能がある
 		//現在の年月のレコードを取得する 現在の年月とフォーマット（いずれも文字列）を渡して使用
@@ -87,6 +93,10 @@ public class CustomerController {
 		//現在年月のみを文字列で表すオブジェクトを作成
 		DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("yyyy-MM");
 		String yearMonthLocalDateJPStr = localDateJP.format(yearMonthFormat);
+		// usersレコードを取得する 主キーのIDで検索するため1件（サンプル）のみ取得
+		Iterable<UserEntity> userEntity = userRepository.findUserRecordByUserID(1);
+		//View側にuserEntityを渡す
+		mav.addObject("userEntity", userEntity);
 
 		//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
 		//JPAにはRepositoryインターフェースに、命名規則に従ったメソッド名を書くとSQLを自動生成する機能がある
@@ -125,6 +135,10 @@ public class CustomerController {
 		//2022年11月のレコードを取得する 2022年11月の年月とフォーマット（いずれも文字列）を渡して使用
 		Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findDiaryRecordsByYearMonth(yearMonthStr, "yyyy-MM");
 //		https://pointsandlines.jp/server-side/java/model-and-view
+		// usersレコードを取得する 主キーのIDで検索するため1件（サンプル）のみ取得
+		Iterable<UserEntity> userEntity = userRepository.findUserRecordByUserID(1);
+		//View側にuserEntityを渡す
+		mav.addObject("userEntity", userEntity);
 //		addObject()メソッドではView側へ渡すオブジェクトのデータを
 //		第一引数にテンプレートから参照する変数名、
 //		第二引数にオブジェクト名として格納している

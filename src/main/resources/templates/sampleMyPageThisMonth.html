@@ -47,12 +47,13 @@ idがweightおよびdiaryTextの要素を初期状態で非表示にしている
 <body>
 
 <p class="text-center">
-【ユーザー名】さん　　マイページ（2022年12月）<br>
-目標体重：55.0kg<br>
+<!-- Controllerから渡されたサンプルユーザーの名前、目標体重を表示 -->
+<p th:text="|${userEntity.userName}さん　　マイページ（2022年12月）|"></p><br>
+<p th:text="|目標体重：${userEntity.weightGoal}kg|"></p><br>
 今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
 <br>
 保存ボタンをクリックすると、日記欄を更新してこのページを再表示します。
-</p>
+
 
 2022年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageNovember"
 		 class="text-primary">11月</a>
