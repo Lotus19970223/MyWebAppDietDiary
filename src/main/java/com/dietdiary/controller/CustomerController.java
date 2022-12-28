@@ -59,7 +59,7 @@ public class CustomerController {
 		String yearMonthLocalDateJPStr = localDateJP.format(yearMonthFormat);
 
 		// usersレコードを取得する 主キーのIDで検索するため1件（サンプル）のみ取得
-		Iterable<UserEntity> userEntity = userRepository.findUserRecordByUserID(1);
+		UserEntity userEntity = userRepository.findUserRecordByUserID(1);
 		//View側にuserEntityを渡す
 		mav.addObject("userEntity", userEntity);
 		//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
@@ -94,7 +94,7 @@ public class CustomerController {
 		DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("yyyy-MM");
 		String yearMonthLocalDateJPStr = localDateJP.format(yearMonthFormat);
 		// usersレコードを取得する 主キーのIDで検索するため1件（サンプル）のみ取得
-		Iterable<UserEntity> userEntity = userRepository.findUserRecordByUserID(1);
+		UserEntity userEntity = userRepository.findUserRecordByUserID(1);
 		//View側にuserEntityを渡す
 		mav.addObject("userEntity", userEntity);
 
@@ -136,7 +136,7 @@ public class CustomerController {
 		Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findDiaryRecordsByYearMonth(yearMonthStr, "yyyy-MM");
 //		https://pointsandlines.jp/server-side/java/model-and-view
 		// usersレコードを取得する 主キーのIDで検索するため1件（サンプル）のみ取得
-		Iterable<UserEntity> userEntity = userRepository.findUserRecordByUserID(1);
+		UserEntity userEntity = userRepository.findUserRecordByUserID(1);
 		//View側にuserEntityを渡す
 		mav.addObject("userEntity", userEntity);
 //		addObject()メソッドではView側へ渡すオブジェクトのデータを
