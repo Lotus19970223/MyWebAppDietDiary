@@ -15,8 +15,11 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	//ユーザーのレコードを取得する
 	//\でダブルクオーテーションをエスケープする
 	//ダブルクオーテーションをつけないとuser_idカラムが見つからないため
-	@Query(value = "select * from USERS where \"user_id\" = ?1",
+	@Query(value = "select * from USERS where USER_ID = ?1",
             nativeQuery = true)
 	//下記メソッドを呼び出す際にUserIDを指定して使用する
 	Iterable<UserEntity> findUserRecordByUserID(Integer userID);
+
+	//自動生成メソッドを試す
+	Iterable<UserEntity> findByUserID(Integer userID);
 }
