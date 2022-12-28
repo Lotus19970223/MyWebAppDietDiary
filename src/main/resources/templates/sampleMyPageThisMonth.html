@@ -48,7 +48,7 @@ idがweightおよびdiaryTextの要素を初期状態で非表示にしている
 
 <p class="text-center">
 <!-- Controllerから渡されたサンプルユーザーの名前、目標体重を表示 -->
-<p th:text="|${userEntity}さん　　マイページ（2022年12月）|"></p><br>
+<p th:text="|${userEntity.getUserName()}さん　　マイページ（2022年12月）|"></p><br>
 <p th:text="|目標体重：${userEntity}kg|"></p><br>
 今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
 <br>

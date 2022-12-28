@@ -16,7 +16,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	/*PostgreSQLではカラム名であることを明示する場合はダブルクオーテーション
 	  文字列であることを明示する場合はシングルクオーテーション
 	 */
-	//ダブルクオーテーションをエスケープする
+	//ダブルクオーテーションをエスケープする カラム名は大文字小文字区別あり
 	@Query(value = "select * from USERS where \\\"USER_ID\\\" = ?1",
             nativeQuery = true)
 	//下記メソッドを呼び出す際にUserIDを指定して使用する
