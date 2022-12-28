@@ -21,5 +21,5 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	Iterable<UserEntity> findUserRecordByUserID(Integer userID);
 
 	//自動生成メソッドを試す
-	Iterable<UserEntity> findByUserID(Integer userID);
+	Iterable<UserEntity> findByUser_ID(Integer userID);
 }
