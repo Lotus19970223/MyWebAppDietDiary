@@ -94,7 +94,7 @@ public class CustomerController {
 		DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("yyyy-MM");
 		String yearMonthLocalDateJPStr = localDateJP.format(yearMonthFormat);
 		// usersレコードを取得する 主キーのIDで検索するため1件（サンプル）のみ取得
-		Iterable<UserEntity> userEntity = userRepository.findByUser_ID(1);
+		Iterable<UserEntity> userEntity = userRepository.findUserRecordByUserID(1);
 		//View側にuserEntityを渡す
 		mav.addObject("userEntity", userEntity);
 
