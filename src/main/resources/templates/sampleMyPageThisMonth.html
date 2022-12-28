@@ -113,7 +113,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			</div>
 		</td>
 		<!-- 目標体重まで欄の出力-->
-		<td th:text="${sample.weightForGoal}" />
+		<td th:text="${sample.weight} - ${userEntity.weightGoal}" />
 		<!-- 日記欄の出力-->
 		<td>
 			<p th:text="${sample.diaryText}" />
