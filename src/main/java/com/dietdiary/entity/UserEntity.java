@@ -16,7 +16,7 @@ public class UserEntity {
 	//ユーザーID  PostgreSQL側ではserial型
 	//テーブルのプライマリキーに当たるプロパティに@Idのアノテーションを付与
 	@Id
-	private Integer userId;
+	private int userId;
     //ユーザー名
     private String userName;
     //パスワード
@@ -27,7 +27,7 @@ public class UserEntity {
     private Date userCreatedWhen;
 
     //getterとsetter
-	public Integer getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(Integer userId) {

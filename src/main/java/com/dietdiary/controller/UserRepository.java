@@ -18,6 +18,6 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	@Query(value = "select * from USERS where 'USER_ID' = ?1",
             nativeQuery = true)
 	//下記メソッドを呼び出す際にUserIDを指定して使用する
-	Iterable<UserEntity> findUserRecordByUserID(Integer userID);
+	Iterable<UserEntity> findUserRecordByUserID(int userID);
 
 }
