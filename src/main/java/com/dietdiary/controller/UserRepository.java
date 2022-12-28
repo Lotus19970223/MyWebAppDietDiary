@@ -20,6 +20,4 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	//下記メソッドを呼び出す際にUserIDを指定して使用する
 	Iterable<UserEntity> findUserRecordByUserID(Integer userID);
 
-	//自動生成メソッドを試す→だめそう
-	Iterable<UserEntity> findByUser_ID(Integer userID);
 }
