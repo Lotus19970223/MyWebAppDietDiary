@@ -47,8 +47,8 @@ idがweightおよびdiaryTextの要素を初期状態で非表示にしている
 <body>
 
 <p class="text-center">
-【ユーザー名】さん　　マイページ（2022年11月）<br>
-目標体重：55.0kg<br>
+<p class="text-center" th:text="|${userEntity.userName}さん　　マイページ（2022年11月）|">
+<p class="text-center" th:text="|目標体重：${userEntity.weightGoal}kg|"></p><br>
 先月分以前の日記を表示しています。
 <br>
 今日の日記の保存は今月分のページから行えます。
@@ -115,7 +115,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			</div>
 		</td>
 		<!-- 目標体重まで欄の出力-->
-		<td th:text="${sample.weightForGoal}" />
+		<td th:text="${sample.weight} - ${userEntity.weightGoal}" />
 		<!-- 日記欄の出力-->
 		<td>
 			<p th:text="${sample.diaryText}" />
