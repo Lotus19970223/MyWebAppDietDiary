@@ -46,19 +46,19 @@ idがweightおよびdiaryTextの要素を初期状態で非表示にしている
 
 <body>
 
-<!-- Controllerから渡されたサンプルユーザーの名前、目標体重を表示 -->
-<p class="text-center" th:text="|${userEntity.userName}さん　　マイページ（2023年1月）|">
-<p class="text-center" th:text="|目標体重：${userEntity.weightGoal}kg|"></p>
-<p class="text-center">今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
+<p class="text-center">
+【ユーザー名】さん　　マイページ（2022年12月）<br>
+目標体重：55.0kg<br>
+先月分以前の日記を表示しています。
 <br>
-保存ボタンをクリックすると、日記欄を更新してこのページを再表示します。</p>
-
+今日の日記の保存は今月分のページから行えます。
+</p>
 
 2022年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageNovember"
 		 class="text-primary">11月</a>
-<a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageDecember"
-		 class="text-primary">12月</a><br>
-2023年   1月
+		12月<br>
+2023年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageThisMonth"
+		  class="text-primary">1月</a>
 
 <!-- コントローラー側で取得し、localDateJP、localTimeJPとして現在の日本の日時を登録している
 LocalDate.now()で取得した場合、世界標準時になるため、タイムゾーンを指定して日本の日時を取得している-->
@@ -115,7 +115,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 			</div>
 		</td>
 		<!-- 目標体重まで欄の出力-->
-		<td th:text="${sample.weight} - ${userEntity.weightGoal}" />
+		<td th:text="${sample.weightForGoal}" />
 		<!-- 日記欄の出力-->
 		<td>
 			<p th:text="${sample.diaryText}" />
@@ -141,9 +141,9 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <br>
 2022年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageNovember"
 		 class="text-primary">11月</a>
-<a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageDecember"
-		 class="text-primary">12月</a><br>
-2023年   1月
+		12月<br>
+2023年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageThisMonth"
+		  class="text-primary">1月</a>
 
 <!-- JavaScriptの処理-->
 <script>
