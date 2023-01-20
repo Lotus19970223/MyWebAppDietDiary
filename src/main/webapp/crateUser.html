@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>新規ユーザー作成ページ</title>
+</head>
+<body>
+			<!-- textareaタグのth:action属性でデータの送信先を指定-->
+			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
+			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
+			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
+			<div class="errMsgWeight"></div>
+			<!-- 0.01単位の数値のみ入力可（type="number" step="0.01"で指定） -->
+			<input type="number" step="0.01" form="inputForm" id="weight" th:action="@{/formSave}" th:object="${UserEntity}"
+			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" name="weight" class="form-control" placeholder="目標体重を入力してください（半角数字のみ）"></input>
+
+			<div class="mb-2">
+			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
+			<div class="errMsgDiaryText"></div>
+			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
+			<textarea form="inputForm" id="diaryText" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
+			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
+			</div>
+			<form onsubmit="return validation();" id="inputForm" th:action="@{/formSave}" method="post" th:object="${SampleDiaryEntity}">
+			<div class="mb-2">
+			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
+			<div class="errMsgDiaryText" th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}"></div>
+			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
+			<textarea form="inputForm" id="diaryText" th:action="@{/formSave}" th:object="${SampleDiaryEntity}"
+			 th:if="${#strings.toString(sample.date) == #strings.toString(localDateJP)}" cols="10" rows="2" name="diaryText" class="form-control" placeholder="ここにテキストを入力してください"></textarea>
+			</div>
+			<!-- 参考：https://qiita.com/Emily-wata/items/cdd4baf2e50333ccea90-->
+			<!-- formタグにidを付与し、buttonにformクラスを追加し、formタグのidと同じものをつけて紐付ける-->
+			<input type="submit" id="saveButton" form="inputForm"
+			  class="btn btn-secondary border border-dark" value="保存">
+			</form>
+<script>
+/* バリデーションの処理
+参考：https://tsuchippo.com/programming-js-validation
+	https://tsuchippo.com/validation/index.html*/
+function validation() {
+	//保存ボタン（入力フォーム）の要素を取得
+    const saveButton = document.querySelector('#saveButton');
+    console.log(saveButton);
+    //保存ボタンの要素にクリックイベントを設定する
+    saveButton.addEventListener('click', (e) => {
+        // 体重欄・日記欄の空欄チェック
+        // 入力された文字列を取得
+        const weight = document.querySelector('#weight').value;
+        const diaryText = document.querySelector('#diaryText').value;
+        // エラーメッセージを表示させる要素を取得
+        const errMsgWeight = document.querySelector('.errMsgWeight');
+        const errMsgDiaryText = document.querySelector('.errMsgDiaryText');
+        // 体重欄が空欄の場合
+        if(!weight){
+        	// 入力が空の場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgWeight.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgWeight.textContent = '体重欄が入力されていません';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgWeight.classList.add('input-invalid');
+        }else{
+            // エラーメッセージのテキストに空文字を代入
+            errMsgWeight.textContent ='';
+            // クラスを削除
+            errMsgWeight.classList.remove('input-invalid');
+        }
+        // 日記欄が空欄の場合
+        if(!diaryText){
+        	// 入力が空の場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgDiaryText.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgDiaryText.textContent = '日記欄が入力されていません';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgDiaryText.classList.add('input-invalid');
+        }else{
+            // エラーメッセージのテキストに空文字を代入
+            errMsgDiaryText.textContent ='';
+            // クラスを削除
+            errMsgDiaryText.classList.remove('input-invalid');
+        }
+    }, false);
+}
+/* バリデーションの処理を読み込みが完了したときに追加 */
+window.addEventListener('DOMContentLoaded', validation(), false);
+</script>
+</body>
+</html>
