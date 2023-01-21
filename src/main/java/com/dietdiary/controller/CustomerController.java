@@ -78,7 +78,7 @@ public class CustomerController {
 			userEntity.setUserCreatedWhen(sqlDate);*/
 
 			//エンティティをDBに登録
-    		userRepository.saveExceptUserID(userEntity);
+    		userRepository.saveByParameters(sdeFromForm.getUserName(), sdeFromForm.getPassword(), sdeFromForm.getWeightGoal());
 
 		    //ユーザー作成ページに再遷移（登録ボタン押下後に再表示）
 		    return "redirect:/createUser";
