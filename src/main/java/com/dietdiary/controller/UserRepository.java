@@ -21,5 +21,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
             nativeQuery = true)
 	//下記メソッドを呼び出す際にUserIDを指定して使用する
 	UserEntity findUserRecordByUserID(int userID);
+	
+	//
 
 }
