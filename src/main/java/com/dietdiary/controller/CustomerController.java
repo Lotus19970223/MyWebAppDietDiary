@@ -41,6 +41,7 @@ public class CustomerController {
 		mav.setViewName("customerList");
         return mav;
 	}
+	//ユーザー作成ページ
 	@RequestMapping("/createUser")
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView createUser() {
@@ -48,13 +49,44 @@ public class CustomerController {
 		mav.setViewName("createUser");
         return mav;
 	}
+
+	//ユーザー作成ページで作成ボタン押下時に呼ばれるメソッド
 	@RequestMapping("/saveCreatedUser")
-	//ModelAndViewオブジェクトを返す
-	public ModelAndView saveCreatedUser() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("createUser");
-        return mav;
-	}
+	public String saveCreatedUser(UserEntity sdeFromForm) {
+			System.out.println(sdeFromForm + "←が表示されていればsdeはnullではない");
+			//getDate()含め、getDiaryText()以外は引数のsdeFromFormではnull
+			//引数のsdeFromFormでは、保存ボタン押下時に送信した値がgetDiaryText()で取得可
+			System.out.println(sdeFromForm.getUserName() + "←が表示されていればsde.getUserName()はnullではない");
+			System.out.println(sdeFromForm.getPassword() + "←が表示されていればsde.getPassword()はnullではない");
+			System.out.println(sdeFromForm.getWeightGoal() + "←が表示されていればsde.getWeightGoalはnullではない");
+
+			//DBにinsertする用のエンティティを用意
+			UserEntity userEntity = new UserEntity();
+
+			//作成ページで入力された値をエンティティにセット
+			userEntity.setUserName(sdeFromForm.getUserName());
+			userEntity.setPassword(sdeFromForm.getPassword());
+			userEntity.setWeightGoal(sdeFromForm.getWeightGoal());
+
+			//日本（東京）の現在日時を取得
+			ZonedDateTime nowDateTimeJP = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+			//現在日時から日付のオブジェクトを作成
+			LocalDate localDateJP = nowDateTimeJP.toLocalDate();
+			java.sql.Date sqlDate = java.sql.Date.valueOf(localDateJP.toString());
+
+			//ユーザー作成日をエンティティにセット
+			userEntity.setUserCreatedWhen(sqlDate);
+
+			//エンティティをDBに登録
+    		userRepository.save(userEntity);
+
+		    //ユーザー作成ページに再遷移（登録ボタン押下後に再表示）
+		    return "redirect:/createUser";
+		}
+
+
+
+
 	@RequestMapping("/sampleMyPageThisMonth")
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index2() {
