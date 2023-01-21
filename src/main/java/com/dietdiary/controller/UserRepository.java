@@ -21,7 +21,12 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
             nativeQuery = true)
 	//下記メソッドを呼び出す際にUserIDを指定して使用する
 	UserEntity findUserRecordByUserID(int userID);
-	
-	//
+
+	//レコード登録用メソッド
+	@Query(value = "insert into USERS(\\\"USER_NAME\\\", \\\"PASSWORD\\\", \\\"WEIGHT_GOAL\\\", \\\"USER_CREATED_WHEN\\\") "
+			+ "values (?1, ?2, ?3, CURRENT_DATE);",
+            nativeQuery = true)
+	//ユーザー名、パスワード、目標体重を入力した状態のエンティティを引数にして登録 作成日は上記のCURRENT_DATE USER_IDは自動採番
+	void saveExceptUserID(UserEntity user);
 
 }

@@ -68,17 +68,17 @@ public class CustomerController {
 			userEntity.setPassword(sdeFromForm.getPassword());
 			userEntity.setWeightGoal(sdeFromForm.getWeightGoal());
 
-			//日本（東京）の現在日時を取得
+			/*日本（東京）の現在日時を取得
 			ZonedDateTime nowDateTimeJP = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
 			//現在日時から日付のオブジェクトを作成
 			LocalDate localDateJP = nowDateTimeJP.toLocalDate();
 			java.sql.Date sqlDate = java.sql.Date.valueOf(localDateJP.toString());
 
 			//ユーザー作成日をエンティティにセット
-			userEntity.setUserCreatedWhen(sqlDate);
+			userEntity.setUserCreatedWhen(sqlDate);*/
 
 			//エンティティをDBに登録
-    		userRepository.save(userEntity);
+    		userRepository.saveExceptUserID(userEntity);
 
 		    //ユーザー作成ページに再遷移（登録ボタン押下後に再表示）
 		    return "redirect:/createUser";
