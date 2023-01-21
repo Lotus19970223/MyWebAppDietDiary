@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -16,6 +19,8 @@ public class UserEntity {
 	//ユーザーID  PostgreSQL側ではserial型
 	//テーブルのプライマリキーに当たるプロパティに@Idのアノテーションを付与
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_USERID_seq")
+    @SequenceGenerator(name = "users_USERID_seq", sequenceName = "users_USERID_seq", allocationSize = 1)
 	private int userId;
     //ユーザー名
     private String userName;
