@@ -40,7 +40,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 
 	//レコード登録用メソッド仮
 	@Query(value = "insert into USERS(\\\"USER_ID\\\", \\\"USER_NAME\\\", \\\"PASSWORD\\\", \\\"WEIGHT_GOAL\\\", \\\"USER_CREATED_WHEN\\\") "
-			+ "values (2, ?1, ?2, ?3, CURRENT_DATE)",
+			+ "values (5, ?1, ?2, ?3, CURRENT_DATE)",
             nativeQuery = true)
 	//ユーザー名、パスワード、目標体重を引数にして登録 作成日は上記のCURRENT_DATE  USER_IDは自動採番
 	void saveByParametersTest(String userName, String password, BigDecimal weightGoal);
