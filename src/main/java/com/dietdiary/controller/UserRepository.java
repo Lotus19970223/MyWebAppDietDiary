@@ -2,10 +2,11 @@ package com.dietdiary.controller;
 
 import java.math.BigDecimal;
 
-import org.springframework.data.jdbc.repository.query.Modifying;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dietdiary.entity.UserEntity;
 
@@ -43,6 +44,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	void saveByParameters(String userName, String password, BigDecimal weightGoal);
 
 	//レコード登録用メソッド仮
+	@Transactional
 	@Modifying
 	@Query(value = "insert into USERS(\\\"USER_ID\\\", \\\"USER_NAME\\\", \\\"PASSWORD\\\", \\\"WEIGHT_GOAL\\\", \\\"USER_CREATED_WHEN\\\") "
 			+ "values (7, ?1, ?2, ?3, CURRENT_DATE)",
