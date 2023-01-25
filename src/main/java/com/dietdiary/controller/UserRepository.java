@@ -2,6 +2,7 @@ package com.dietdiary.controller;
 
 import java.math.BigDecimal;
 
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -32,6 +33,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	void saveExceptUserID(UserEntity user);
 
 	//レコード登録用メソッド
+	@Modifying
 	@Query(value = "insert into USERS(\\\"USER_NAME\\\", \\\"PASSWORD\\\", \\\"WEIGHT_GOAL\\\", \\\"USER_CREATED_WHEN\\\") "
 			+ "values (?1, ?2, ?3, CURRENT_DATE)",
             nativeQuery = true)
