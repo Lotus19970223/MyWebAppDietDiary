@@ -93,7 +93,26 @@ public class CustomerController {
 		    return "redirect:/createUser";
 		}
 
+	@RequestMapping("/userList")
+	public ModelAndView displayUserList() {
+		//月を指定せずに全データを取得する
+		ModelAndView mav = new ModelAndView();
 
+		//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
+		//JPAにはRepositoryインターフェースに、命名規則に従ったメソッド名を書くとSQLを自動生成する機能がある
+		//日記レコード一覧を取得する際にDate順にソートする
+		Iterable<UserEntity> userList = userRepository.findAllByOrderByUserId();
+//		https://pointsandlines.jp/server-side/java/model-and-view
+//		addObject()メソッドではView側へ渡すオブジェクトのデータを
+//		第一引数にテンプレートから参照する変数名、
+//		第二引数にオブジェクト名として格納している
+		mav.addObject("userList", userList);
+		// 「setViewNameの引数のファイル名」に対応した
+		// /myWebAppDietDiary/src/main/resources/templates内の
+		// ファイルを表示する
+		mav.setViewName("userList");
+        return mav;
+	}
 
 
 	@RequestMapping("/sampleMyPageThisMonth")

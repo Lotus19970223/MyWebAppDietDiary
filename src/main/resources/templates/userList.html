@@ -1,0 +1,19 @@
+<!-- https://www.bedroomcomputing.com/2019/11/2019-1101-heroku-springboot-postgres/ -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	Hello
+	<table>
+	<tr th:each="customer: ${customerList}">
+		<td th:text="${customer.id}" />
+		<td th:text="${customer.firstName}" />
+		<td th:text="${customer.lastName}" />
+	</tr>
+	</table>
+</body>
+</html>
