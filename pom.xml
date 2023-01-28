@@ -19,7 +19,19 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<!-- コメントアウト用コピペ用 -->
+
+	<!--参考：https://loglog.xyz/programming/spring_boot_starter_validation -->
 	<dependencies>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
 	<!-- https://blog.y-yuki.net/entry/2016/11/24/000000を参考に記述
 	<dependency>
 		<groupId>com.oracle</groupId>

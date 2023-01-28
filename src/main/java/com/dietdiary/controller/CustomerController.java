@@ -6,8 +6,13 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,7 +57,11 @@ public class CustomerController {
 
 	//ユーザー作成ページで作成ボタン押下時に呼ばれるメソッド
 	@RequestMapping("/saveCreatedUser")
-	public String saveCreatedUser(UserEntity sdeFromForm) {
+	//参考：https://www.tsuchiya.blog/spring-boot-step4/#toc3
+    // @Validアノテーションを付けた引数は入力チェックが行われる
+    // 結果は直後の引数BindingResultに格納される。
+    // BindingResultは@Validのすぐあとになくてはならない
+	public String saveCreatedUser(Model mode, @ModelAttribute @Valid UserEntity sdeFromForm, BindingResult result) {
 			System.out.println(sdeFromForm + "←が表示されていればsdeはnullではない");
 			//getDate()含め、getDiaryText()以外は引数のsdeFromFormではnull
 			//引数のsdeFromFormでは、保存ボタン押下時に送信した値がgetDiaryText()で取得可

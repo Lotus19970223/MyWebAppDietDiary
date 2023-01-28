@@ -2,6 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+/* ヘッダー埋め込み形式でCSSを記述
+参考1：https://willcloud.jp/knowhow/whats_css/
+参考2：https://allabout.co.jp/gm/gc/23973/
+
+/* バリデーションにかかったとき用の表示 */
+.form-invalid {
+    color: #f50000;
+    font-size: 12px;
+    padding-left: 12px;
+}
+
+.input-invalid {
+    border: 1px solid #f50000;
+}
+
+
+</style>
 <title>新規ユーザー作成ページ</title>
 </head>
 <body>
@@ -9,23 +27,23 @@
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 
-			ユーザー名
+			ユーザー名（20文字まで）
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
-			<div class="errMsgDiaryText"></div>
+			<div class="errMsgUserName"></div>
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<textarea form="createForm" id="userName" th:action="@{/saveCreatedUser}" th:object="${UserEntity}"
 			  cols="10" rows="2" name="userName" class="form-control" placeholder="ユーザー名入力欄"></textarea>
 
 			<br>
-			目標体重
+			目標体重（0.01kg単位・半角数字）
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
-			<div class="errMsgweightForGoal"></div>
+			<div class="errMsgweightGoal"></div>
 			<!-- 0.01単位の数値のみ入力可（type="number" step="0.01"で指定） -->
 			<input type="number" step="0.01" form="createForm" id="weightGoal" th:action="@{/saveCreatedUser}" th:object="${UserEntity}"
 			 name="weightGoal" class="form-control" placeholder="目標体重を入力してください（半角数字のみ）"></input>
 
 			<br>
-			パスワード
+			パスワード（半角英数8文字～20文字）
 			<div class="mb-2">
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
 			<div class="errMsgDiaryText"></div>
@@ -54,6 +72,173 @@
 参考：https://tsuchippo.com/programming-js-validation
 	https://tsuchippo.com/validation/index.html*/
 function validation() {
+	//作成ボタン（入力フォーム）の要素を取得
+    const createButton = document.querySelector('#createButton');
+    console.log(createButton);
+    //作成ボタンの要素にクリックイベントを設定する
+    createButton.addEventListener('click', (e) => {
+        // ユーザー名・目標体重・パスワード・パスワード（確認）の空欄チェック
+        // 入力された文字列を取得
+        const userName = document.querySelector('#userName').value;
+        const weightGoal = document.querySelector('#weightGoal').value;
+        const password = document.querySelector('#password').value;
+        const passwordCheck = document.querySelector('#passwordCheck').value;
+        // エラーメッセージを表示させる要素を取得
+        const errMsgUserName = document.querySelector('.errMsgUserName');
+        const errMsgweightGoal = document.querySelector('.errMsgweightGoal');
+        const errMsgPassword = document.querySelector('.errMsgPassword');
+        const errMsgPasswordCheck = document.querySelector('.errMsgPasswordCheck');
+
+        // ユーザー名が空欄の場合
+        if(!userName){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgUserName.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgUserName.textContent = 'ユーザー名が入力されていません';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgUserName.classList.add('input-invalid');
+        }else if(userName.length > 20){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgUserName.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgUserName.textContent = 'ユーザー名は20文字以下で入力してください';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgUserName.classList.add('input-invalid');
+        }
+        else{
+            // エラーメッセージのテキストに空文字を代入
+            errMsgweightForGoal.textContent ='';
+            // クラスを削除
+            errMsgweightForGoal.classList.remove('input-invalid');
+        }
+
+        // 目標体重欄が空欄の場合
+        if(!weightGoal){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgweightGoal.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgweightGoal.textContent = '体重欄が入力されていません';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgweightGoal.classList.add('input-invalid');
+        }else{
+            // エラーメッセージのテキストに空文字を代入
+            errMsgweightForGoal.textContent ='';
+            // クラスを削除
+            errMsgweightForGoal.classList.remove('input-invalid');
+        }
+
+        //パスワード・パスワード（確認）が異なる場合
+        if(password !== passwordCheck){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgPassword.classList.add('form-invalid');
+            errMsgPasswordCheck.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgPassword.textContent = 'パスワードとパスワード（確認）の入力が一致しません';
+            errMsgPasswordCheck.textContent = 'パスワードとパスワード（確認）の入力が一致しません';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgPassword.classList.add('input-invalid');
+            errMsgPasswordCheck.classList.add('input-invalid');
+        }
+
+        // パスワードが空欄の場合
+        if(!password){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgPassword.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgPassword.textContent = 'パスワードが入力されていません';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgPassword.classList.add('input-invalid');
+        }else if(isHanEisu(password) || password.length < 8 || password.length > 20){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgPassword.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgPassword.textContent = 'パスワードは半角英数8文字以上で入力してください';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgPassword.classList.add('input-invalid');
+        }else if(password.length < 8){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgUserName.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgUserName.textContent = 'パスワードは8文字以上で入力してください';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgUserName.classList.add('input-invalid');
+        }
+        else{
+            // エラーメッセージのテキストに空文字を代入
+            errMsgDiaryText.textContent ='';
+            // クラスを削除
+            errMsgDiaryText.classList.remove('input-invalid');
+        }
+
+        // パスワード（確認）が空欄の場合
+        if(!passwordCheck){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgPasswordCheck.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgPasswordCheck.textContent = 'パスワード（確認）が入力されていません';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgPasswordCheck.classList.add('input-invalid');
+        }else if(isHanEisu(passwordCheck) || password.length < 8 || password.length > 20){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgPasswordCheck.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgPasswordCheck.textContent = 'パスワード（確認）は半角英数8文字以上で入力してください';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgPasswordCheck.classList.add('input-invalid');
+        }else if(passwordCheck.length < 8){
+        	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
+        	e.preventDefault();
+            // クラスを追加(エラーメッセージを表示する)
+            errMsgUserName.classList.add('form-invalid');
+            // エラーメッセージのテキスト
+            errMsgUserName.textContent = 'パスワード（確認）は8文字以上で入力してください';
+            // クラスを追加(フォームの枠線を赤くする)
+            errMsgUserName.classList.add('input-invalid');
+        }
+        else{
+            // エラーメッセージのテキストに空文字を代入
+            errMsgDiaryText.textContent ='';
+            // クラスを削除
+            errMsgDiaryText.classList.remove('input-invalid');
+        }
+
+    }, false);
+}
+
+/* 参考
+ * https://javascript.programmer-reference.com/js-check-hankaku-eisu/
+ */
+function isHanEisu(str){
+	  str = (str==null)?"":str;
+	  if(str.match(/^[A-Za-z0-9]*$/)){
+	    return true;
+	  }else{
+	    return false;
+	  }
+	}
+
+/* バリデーションの処理
+参考：https://tsuchippo.com/programming-js-validation
+	https://tsuchippo.com/validation/index.html*/
+function validationOld() {
 	//作成ボタン（入力フォーム）の要素を取得
     const createButton = document.querySelector('#createButton');
     console.log(createButton);
