@@ -29,6 +29,8 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	UserEntity findUserRecordByUserID(int userID);
 
 	//ユーザーのレコード一覧を取得する（）
+	@Query(value = "select * from USERS order by \\\"USER_ID\\\"",
+            nativeQuery = true)
 	Iterable<UserEntity> findAllByOrderByUserId();
 
 	//レコード登録用メソッド(エラーになる　引数のUserEntityを?1にあてはめて?2以降が空白になるため？？)
