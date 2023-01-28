@@ -111,9 +111,9 @@ function validation() {
         }
         else{
             // エラーメッセージのテキストに空文字を代入
-            errMsgweightForGoal.textContent ='';
+            errMsgUserName.textContent ='';
             // クラスを削除
-            errMsgweightForGoal.classList.remove('input-invalid');
+            errMsgUserName.classList.remove('input-invalid');
         }
 
         // 目標体重欄が空欄の場合
@@ -128,9 +128,9 @@ function validation() {
             errMsgweightGoal.classList.add('input-invalid');
         }else{
             // エラーメッセージのテキストに空文字を代入
-            errMsgweightForGoal.textContent ='';
+            errMsgweightGoal.textContent ='';
             // クラスを削除
-            errMsgweightForGoal.classList.remove('input-invalid');
+            errMsgweightGoal.classList.remove('input-invalid');
         }
 
         //パスワード・パスワード（確認）が異なる場合
@@ -182,9 +182,9 @@ function validation() {
         }
         else{
             // エラーメッセージのテキストに空文字を代入
-            errMsgDiaryText.textContent ='';
+            errMsgPassword.textContent ='';
             // クラスを削除
-            errMsgDiaryText.classList.remove('input-invalid');
+            errMsgPassword.classList.remove('input-invalid');
         }
 
         // パスワード（確認）が空欄の場合
@@ -221,9 +221,9 @@ function validation() {
         }
         else{
             // エラーメッセージのテキストに空文字を代入
-            errMsgDiaryText.textContent ='';
+            errMsgPasswordCheck.textContent ='';
             // クラスを削除
-            errMsgDiaryText.classList.remove('input-invalid');
+            errMsgPasswordCheck.classList.remove('input-invalid');
         }
 
     }, false);
