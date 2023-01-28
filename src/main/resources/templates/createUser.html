@@ -32,7 +32,7 @@
 			<div class="errMsgUserName"></div>
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<textarea form="createForm" id="userName" th:action="@{/saveCreatedUser}" th:object="${UserEntity}"
-			  cols="20" rows="1" name="userName" class="form-control" placeholder="ユーザー名入力欄"></textarea>
+			  cols="30" rows="1" name="userName" class="form-control" placeholder="ユーザー名入力欄"></textarea>
 
 			<br>
 			目標体重（0.01kg単位・半角数字）
@@ -49,18 +49,18 @@
 			<div class="errMsgPassword"></div>
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<textarea form="createForm" id="password" th:action="@{/saveCreatedUser}" th:object="${UserEntity}"
-			  cols="20" rows="1"  class="form-control" placeholder="パスワード入力欄"></textarea>
+			  cols="30" rows="1"  class="form-control" placeholder="パスワード入力欄"></textarea>
 			</div>
 
 
-			パスワード（確認）
+			パスワード（確認） （上記パスワードと同一のものを入力）
 			<form onsubmit="return validation();" id="createForm" th:action="@{/saveCreatedUser}" method="post" th:object="${UserEntity}">
 			<div class="mb-2">
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
 			<div class="errMsgPasswordCheck"></div>
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<textarea form="createForm" id="passwordCheck" th:action="@{/saveCreatedUser}" th:object="${UserEntity}"
-			  cols="20" rows="1" name="password" class="form-control" placeholder="パスワード（確認）入力欄"></textarea>
+			  cols="30" rows="1" name="password" class="form-control" placeholder="パスワード（確認）入力欄"></textarea>
 			</div>
 			<!-- 参考：https://qiita.com/Emily-wata/items/cdd4baf2e50333ccea90-->
 			<!-- formタグにidを付与し、buttonにformクラスを追加し、formタグのidと同じものをつけて紐付ける-->
@@ -167,15 +167,18 @@ function validation() {
             errMsgPassword.textContent = 'パスワードは半角英数8文字以上で入力してください';
             // クラスを追加(フォームの枠線を赤くする)
             errMsgPassword.classList.add('input-invalid');
-        }else if(password.length < 8){
+        }else if(password !== passwordCheck){
         	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
         	e.preventDefault();
             // クラスを追加(エラーメッセージを表示する)
-            errMsgUserName.classList.add('form-invalid');
+            errMsgPassword.classList.add('form-invalid');
+            errMsgPasswordCheck.classList.add('form-invalid');
             // エラーメッセージのテキスト
-            errMsgUserName.textContent = 'パスワードは8文字以上で入力してください';
+            errMsgPassword.textContent = 'パスワードとパスワード（確認）の入力が一致しません';
+            errMsgPasswordCheck.textContent = 'パスワードとパスワード（確認）の入力が一致しません';
             // クラスを追加(フォームの枠線を赤くする)
-            errMsgUserName.classList.add('input-invalid');
+            errMsgPassword.classList.add('input-invalid');
+            errMsgPasswordCheck.classList.add('input-invalid');
         }
         else{
             // エラーメッセージのテキストに空文字を代入
@@ -203,15 +206,18 @@ function validation() {
             errMsgPasswordCheck.textContent = 'パスワード（確認）は半角英数8文字以上で入力してください';
             // クラスを追加(フォームの枠線を赤くする)
             errMsgPasswordCheck.classList.add('input-invalid');
-        }else if(passwordCheck.length < 8){
+        }else if(password !== passwordCheck){
         	// 条件に合致する場合、デフォルトアクション（フォーム送信）をキャンセル
         	e.preventDefault();
             // クラスを追加(エラーメッセージを表示する)
-            errMsgUserName.classList.add('form-invalid');
+            errMsgPassword.classList.add('form-invalid');
+            errMsgPasswordCheck.classList.add('form-invalid');
             // エラーメッセージのテキスト
-            errMsgUserName.textContent = 'パスワード（確認）は8文字以上で入力してください';
+            errMsgPassword.textContent = 'パスワードとパスワード（確認）の入力が一致しません';
+            errMsgPasswordCheck.textContent = 'パスワードとパスワード（確認）の入力が一致しません';
             // クラスを追加(フォームの枠線を赤くする)
-            errMsgUserName.classList.add('input-invalid');
+            errMsgPassword.classList.add('input-invalid');
+            errMsgPasswordCheck.classList.add('input-invalid');
         }
         else{
             // エラーメッセージのテキストに空文字を代入
