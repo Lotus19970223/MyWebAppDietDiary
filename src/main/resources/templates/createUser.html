@@ -27,6 +27,9 @@
 			<!-- textareaタグのform属性で、指定したidを持つformタグに紐づける-->
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 
+新規ユーザー作成用のページです。
+下記の項目を全て入力して保存ボタンを押下するとユーザーが作成されます。
+
 			ユーザー名（20文字まで）
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
 			<div class="errMsgUserName"></div>
@@ -67,6 +70,9 @@
 			<input type="submit" id="createButton" form="createForm"
 			  class="btn btn-secondary border border-dark" value="保存">
 			</form>
+<a href="https://my-web-app-diet-diary.herokuapp.com/userList"
+		 class="text-primary">ユーザー一覧表示ページ</a>
+
 <script>
 /* バリデーションの処理
 参考：https://tsuchippo.com/programming-js-validation
