@@ -35,7 +35,7 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	//ユーザー名、パスワード、目標体重を入力した状態のエンティティを引数にして登録 作成日は上記のCURRENT_DATE USER_IDは自動採番
 	void saveExceptUserID(UserEntity user);
 
-	//レコード登録用メソッド
+	//レコード登録用メソッド @Transactionalと@Modifyingをつけないとselect文以外の場合エラーになるのでつける
 	@Transactional
 	@Modifying
 	@Query(value = "insert into USERS(\\\"USER_NAME\\\", \\\"PASSWORD\\\", \\\"WEIGHT_GOAL\\\", \\\"USER_CREATED_WHEN\\\") "

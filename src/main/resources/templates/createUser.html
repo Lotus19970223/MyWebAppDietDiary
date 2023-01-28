@@ -16,6 +16,7 @@
 			<textarea form="createForm" id="userName" th:action="@{/saveCreatedUser}" th:object="${UserEntity}"
 			  cols="10" rows="2" name="userName" class="form-control" placeholder="ユーザー名入力欄"></textarea>
 
+			<br>
 			目標体重
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
 			<div class="errMsgweightForGoal"></div>
@@ -23,6 +24,7 @@
 			<input type="number" step="0.01" form="createForm" id="weightGoal" th:action="@{/saveCreatedUser}" th:object="${UserEntity}"
 			 name="weightGoal" class="form-control" placeholder="目標体重を入力してください（半角数字のみ）"></input>
 
+			<br>
 			パスワード
 			<div class="mb-2">
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
@@ -32,6 +34,7 @@
 			  cols="10" rows="2"  class="form-control" placeholder="パスワード入力欄"></textarea>
 			</div>
 
+			<br>
 			パスワード（確認）
 			<form onsubmit="return validation();" id="createForm" th:action="@{/saveCreatedUser}" method="post" th:object="${UserEntity}">
 			<div class="mb-2">
