@@ -90,7 +90,7 @@ public class CustomerController {
     		userRepository.saveByParameters(userEntity.getUserName(), userEntity.getPassword(), userEntity.getWeightGoal());
 
 		    //ユーザー一覧ページに再遷移（登録ボタン押下後に表示）
-		    return "/userList";
+		    return "redirect:/userList";
 		}
 
 	@RequestMapping("/userList")
