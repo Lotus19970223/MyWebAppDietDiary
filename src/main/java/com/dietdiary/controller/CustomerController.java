@@ -89,8 +89,8 @@ public class CustomerController {
 			//エンティティをDBに登録
     		userRepository.saveByParameters(userEntity.getUserName(), userEntity.getPassword(), userEntity.getWeightGoal());
 
-		    //ユーザー作成ページに再遷移（登録ボタン押下後に再表示）
-		    return "redirect:/createUser";
+		    //ユーザー一覧ページに再遷移（登録ボタン押下後に表示）
+		    return "/userList";
 		}
 
 	@RequestMapping("/userList")
