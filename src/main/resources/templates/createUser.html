@@ -28,7 +28,7 @@
 			<!-- th:object属性はフォームの内容が全て入るオブジェクトを差す-->
 
 新規ユーザー作成用のページです。<br>
-下記の項目を全て入力して保存ボタンを押下するとユーザーが作成されます。<br>
+下記の項目を全て入力して保存ボタンを押下するとユーザーが作成され、ユーザー一覧表示ページに遷移します。<br>
 <br>
 			ユーザー名（20文字まで）
 			<!-- バリデーションにかかった際の入力を促すメッセージ表示 -->
@@ -70,8 +70,9 @@
 			<input type="submit" id="createButton" form="createForm"
 			  class="btn btn-secondary border border-dark" value="保存">
 			</form>
+<br>
 <a href="https://my-web-app-diet-diary.herokuapp.com/userList"
-		 class="text-primary">ユーザー一覧表示ページ</a>
+		 class="text-primary">ユーザー一覧表示ページへ</a>
 
 <script>
 /* バリデーションの処理
