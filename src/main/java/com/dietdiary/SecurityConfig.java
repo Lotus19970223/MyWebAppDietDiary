@@ -41,7 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         	//ログイン画面のURL
             .loginPage("/login")
             //認証後にリダイレクトされるページ
-            .defaultSuccessUrl("/")
+            .defaultSuccessUrl("/sampleMyPageThisMonth")
             .permitAll();
+        http.logout()
+        .permitAll();
     }
 }
