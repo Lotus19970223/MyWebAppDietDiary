@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
         	//ログイン画面のURL
             .loginPage("/login")
+            .failureUrl("/login")// 認証失敗時のURL
             //認証後にリダイレクトされるページ
             .defaultSuccessUrl("/sampleMyPageThisMonth")
             .permitAll();
