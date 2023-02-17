@@ -3,6 +3,7 @@ package com.dietdiary.controller;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.dietdiary.entity.UserEntity;
 
+@Primary
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
