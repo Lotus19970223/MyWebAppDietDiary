@@ -4,11 +4,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <title>ログイン</title>
 </head>
 <body>
-    <h2 class="heading">ログイン</h2>
+    <h2>ログイン</h2>
     <form method="post" th:action="@{/login}">
         <div th:if="${param.error}">
             ログインに失敗しました
