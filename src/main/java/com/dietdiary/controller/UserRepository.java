@@ -28,6 +28,12 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 	//下記メソッドを呼び出す際にUserIDを指定して使用する
 	UserEntity findUserRecordByUserID(int userID);
 
+	//上記メソッドのユーザー名版
+	@Query(value = "select * from USERS where \\\"USER_NAME\\\" = ?1",
+            nativeQuery = true)
+	//下記メソッドを呼び出す際にUserIDを指定して使用する
+	UserEntity findUserRecordByUserName(String userName);
+
 	//ユーザーのレコード一覧を取得する（）
 	@Query(value = "select * from USERS order by \\\"USER_ID\\\"",
             nativeQuery = true)
