@@ -20,8 +20,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    //以下を参考に、ログイン失敗→成功時のエラーを防ぐ
+    //https://stackoverflow.com/questions/61029340/spring-security-redirects-to-page-with-status-code-999
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**");
+        web.ignoring().antMatchers("/favicon.ico", "/resources/**", "/error");
     }
 
     @Override
