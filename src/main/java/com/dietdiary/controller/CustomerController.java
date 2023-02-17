@@ -46,6 +46,13 @@ public class CustomerController {
 		mav.setViewName("customerList");
         return mav;
 	}
+	@RequestMapping("/error")
+	//ModelAndViewオブジェクトを返す
+	public ModelAndView indexError() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("error");
+        return mav;
+	}
 	//ユーザー作成ページ
 	@RequestMapping("/createUser")
 	//ModelAndViewオブジェクトを返す
