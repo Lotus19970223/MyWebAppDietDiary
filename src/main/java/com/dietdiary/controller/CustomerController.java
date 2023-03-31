@@ -47,7 +47,7 @@ public class CustomerController {
         return mav;
 	}
 
-	@RequestMapping("/index")
+	@RequestMapping("/testLogout")
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView indexLogout() {
 		ModelAndView mav = new ModelAndView();
