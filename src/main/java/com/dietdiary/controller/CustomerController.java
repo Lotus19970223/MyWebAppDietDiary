@@ -47,6 +47,15 @@ public class CustomerController {
         return mav;
 	}
 
+	@RequestMapping("/index")
+	//ModelAndViewオブジェクトを返す
+	public ModelAndView indexLogout() {
+		ModelAndView mav = new ModelAndView();
+		//ログアウトボタン付きインデックスページ
+		mav.setViewName("index");
+        return mav;
+	}
+
 	//ユーザー作成ページ
 	@RequestMapping("/createUser")
 	//ModelAndViewオブジェクトを返す

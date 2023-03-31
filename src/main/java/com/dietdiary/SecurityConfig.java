@@ -4,6 +4,7 @@ package com.dietdiary;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -13,12 +14,18 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
     private UserDetailsService userDetailsService;
 
+	//パスワードエンコーダーを設定しないのでコメントアウト
+	/*@Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }*/
 	@Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -39,16 +46,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	//↓認証に使用するユーザー情報を直接指定
     	auth.inMemoryAuthentication()
             .withUser("yama3")
+            //パスワードエンコーダーをコメントアウトした場合ここがコンパイルエラーになる
             .password(passwordEncoder().encode("123456"))
             .roles("USER");
 
     }
 
     @Override
+    //HttpSecurity クラスを使用して、主にURLごとのセキュリティの設定を行うメソッド
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-        	//ログインしていないユーザーにも「ユーザー登録画面（/createUser）」にアクセスすることが許可される
-        	.antMatchers("/createUser").permitAll()
+        	//ログインしていないユーザーでもアクセス許可されるページ
+        	.antMatchers("/createUser", "userList").permitAll()
             .anyRequest()
             .authenticated();
         http.formLogin()
