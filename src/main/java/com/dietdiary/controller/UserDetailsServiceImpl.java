@@ -22,7 +22,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
-            String sql = "SELECT * FROM user WHERE name = ?";
+        	/*interface UserRepository extends CrudRepository<UserEntity, Integer>からコピー箇所
+        	@Query(value = "select * from USERS where \\\"USER_NAME\\\" = ?1",
+                    nativeQuery = true)
+        	//下記メソッドを呼び出す際にUserIDを指定して使用する
+        	UserEntity findUserRecordByUserName(String userName);
+        	コピー箇所終わり*/
+
+            //元のSQL
+        	//String sql = "SELECT * FROM user WHERE name = ?";
+            //変更後SQL
+        	String sql = "select * from USERS where \\\"USER_NAME\\\" = ?1";
+
             Map<String, Object> map = jdbcTemplate.queryForMap(sql, username);
             String password = (String)map.get("password");
             Collection<GrantedAuthority> authorities = new ArrayList<>();
