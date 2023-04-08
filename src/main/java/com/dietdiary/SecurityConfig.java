@@ -42,14 +42,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     	//↓認証に使用するユーザー情報を userDetailsService を介してデータベースから受け取る
-    	//auth.userDetailsService(userDetailsService);
+    	auth.userDetailsService(userDetailsService);
     	//↓認証に使用するユーザー情報を直接指定
+    	/*
     	auth.inMemoryAuthentication()
             .withUser("yama3")
             //パスワードエンコーダーをコメントアウトした場合ここがコンパイルエラーになる
             .password(passwordEncoder().encode("123456"))
             .roles("USER");
-
+		*/
     }
 
     @Override
