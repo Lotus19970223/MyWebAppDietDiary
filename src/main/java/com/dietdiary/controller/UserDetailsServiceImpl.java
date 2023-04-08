@@ -41,6 +41,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority((String)map.get("authority")));
             //コンパイルエラーのためキャスト
             //元はreturn new UserDetailsImpl(username, password, authorities);
+            //test
+            System.out.println("map:" + map); System.out.println("password:" + password);
+            System.out.println("authorities:" + authorities);
             return (UserDetails) new UserDetailsImpl(username, password, authorities);
         } catch (Exception e) {
             throw new UsernameNotFoundException("user not found.", e);
