@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         	//ログインしていないユーザーでもアクセス許可されるページ
-        	.antMatchers("/createUser", "userList").permitAll()
+        	.antMatchers("/createUser", "/userList").permitAll()
             .anyRequest()
             .authenticated();
         http.formLogin()
