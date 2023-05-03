@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             //元のSQL
         	//String sql = "SELECT * FROM user WHERE name = ?";
             //変更後SQL
-        	String sql = "select * from USERS where \\\"USER_NAME\\\" = サンプル太郎";
+        	String sql = "select * from USERS where \\\"USER_NAME\\\" = ?1";
         	//String sql = "select * from USERS where USER_NAME = ?1";
 
             Map<String, Object> map = jdbcTemplate.queryForMap(sql, username);
@@ -46,6 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             System.out.println("authorities:" + authorities);
             return (UserDetails) new UserDetailsImpl(username, password, authorities);
         } catch (Exception e) {
+        	System.out.println("Exception:" + e);
             throw new UsernameNotFoundException("user not found.", e);
         }
     }
