@@ -15,12 +15,21 @@ public class UserDetailsImpl implements UserDetails {
     private Collection<GrantedAuthority> authorities;
 
 
-	public UserDetailsImpl(String username, String password, Collection<GrantedAuthority> authorities) {
+	public UserDetailsImpl(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+		//https://stackoverflow.com/questions/60968888/a-granted-authority-textual-representation-is-required-in-spring-security
+		//上記に沿ってauthority関連をコメントアウト
+		//this.authorities = authorities;
+	}
+
+	/* public UserDetailsImpl(String username, String password, Collection<GrantedAuthority> authorities) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.authorities = authorities;
-	}
+	}*/
 
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
