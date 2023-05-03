@@ -6,6 +6,7 @@ package com.dietdiary.controller;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserDetailsImpl implements UserDetails {
 
@@ -16,7 +17,7 @@ public class UserDetailsImpl implements UserDetails {
 
 
 	public UserDetailsImpl(String username, String password) {
-		super();
+		//super();
 		this.username = username;
 		this.password = password;
 		//https://stackoverflow.com/questions/60968888/a-granted-authority-textual-representation-is-required-in-spring-security

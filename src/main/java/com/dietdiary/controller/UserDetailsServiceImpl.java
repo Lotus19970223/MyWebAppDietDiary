@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -37,13 +38,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     		//上記に沿ってauthority関連をコメントアウト
             //Collection<GrantedAuthority> authorities = new ArrayList<>();
             //authorities.add(new SimpleGrantedAuthority((String)map.get("authority")));
+
+            //test
+            System.out.println("map:" + map);
+            System.out.println("password:" + password);
+            //System.out.println("authorities:" + authorities);
+
             //コンパイルエラーのためキャスト
             //元はreturn new UserDetailsImpl(username, password, authorities);
-            //test
-            System.out.println("map:" + map); System.out.println("password:" + password);
-            //System.out.println("authorities:" + authorities);
             //return (UserDetails) new UserDetailsImpl(username, password, authorities);
-            return (UserDetails) new UserDetailsImpl(username, password);
+            //return (UserDetails) new UserDetailsImpl(username, password);
+            return new UserDetailsImpl(username, password);
         } catch (Exception e) {
         	System.out.println("Exception:" + e);
             throw new UsernameNotFoundException("user not found.", e);

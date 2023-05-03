@@ -1,4 +1,5 @@
 package com.dietdiary.controller;
+// APIにあるインターフェースなので上記パッケージのものは使用しない？
 
 import java.io.Serializable;
 import java.util.Collection;
