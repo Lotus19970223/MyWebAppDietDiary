@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             //元のSQL
         	//String sql = "SELECT * FROM user WHERE name = ?";
             //変更後SQL
-        	String sql = "select * from USERS where \"USER_NAME\" = ?1";
+        	String sql = "select * from USERS where \"USER_NAME\" = ?S";
         	//String sql = "select * from USERS where USER_NAME = ?1";
 
             Map<String, Object> map = jdbcTemplate.queryForMap(sql, username);
