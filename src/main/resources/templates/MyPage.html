@@ -52,7 +52,7 @@ idがweightおよびdiaryTextの要素を初期状態で非表示にしている
 <p class="text-center">今日の日付に表示されている編集ボタンをクリックし、体重と日記欄を記入したら、保存ボタンをクリックしてください。
 <br>
 保存ボタンをクリックすると、日記欄を更新してこのページを再表示します。</p>
-<br><p class="text-center" th:text="|登録日：${userEntity.UserCreatedWhen}|"></p>
+<br><p class="text-center" th:text="|ユーザー作成日：${userEntity.UserCreatedWhen}|"></p>
 
 
 2022年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageNovember"
@@ -139,6 +139,13 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 	</tr>
   </tbody>
 </table>
+
+<!-- 目標：利用開始日に応じて動的に年・月リンクを生成-->
+<!-- 現在：繰り返し文のテスト-->
+<a th:each="i : ${#numbers.sequence(0, 2)}">
+      <p th:text="|現在：${i}回目|"></p>
+</a>
+
 <br>
 2022年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageNovember"
 		 class="text-primary">11月</a>
