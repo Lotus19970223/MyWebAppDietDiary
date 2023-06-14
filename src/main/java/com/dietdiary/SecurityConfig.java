@@ -70,7 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .loginPage("/login")
             //.failureUrl("/login")// 認証失敗時のURL
             //認証後にリダイレクトされるページ
-            .defaultSuccessUrl("/sampleMyPageThisMonth")
+            //.defaultSuccessUrl("/sampleMyPageThisMonth")
+            .defaultSuccessUrl("/MyPage")
             .permitAll();
         //ログアウト機能を有効にする
         http.logout()

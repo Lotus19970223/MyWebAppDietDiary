@@ -125,6 +125,41 @@ public class CustomerController {
 	}
 
 
+	@RequestMapping("/MyPage")
+	public ModelAndView showMyPage() {
+		ModelAndView mav = new ModelAndView();
+		//日本（東京）の現在日時を取得
+				ZonedDateTime nowDateTimeJP = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+				//現在日時から日付・時刻それぞれのオブジェクトを作成
+				LocalDate localDateJP = nowDateTimeJP.toLocalDate();
+				LocalTime localTimeJP = nowDateTimeJP.toLocalTime();
+				//上記で取得した日付・時刻を、変数localDateJP、localTimeJPのオブジェクトとして登録
+				mav.addObject("localDateJP", localDateJP);
+				mav.addObject("localTimeJP", localTimeJP);
+				//現在年月のみを文字列で表すオブジェクトを作成
+				DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("yyyy-MM");
+				String yearMonthLocalDateJPStr = localDateJP.format(yearMonthFormat);
+
+				// usersレコードを取得する 主キーのIDで検索するため1件（サンプル）のみ取得
+				UserEntity userEntity = userRepository.findUserRecordByUserID(1);
+				//View側にuserEntityを渡す
+				mav.addObject("userEntity", userEntity);
+				//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
+				//JPAにはRepositoryインターフェースに、命名規則に従ったメソッド名を書くとSQLを自動生成する機能がある
+				//現在の年月のレコードを取得する 現在の年月とフォーマット（いずれも文字列）を渡して使用
+				Iterable<SampleDiaryEntity> sampleDiaryList = sampleDiaryRepository.findDiaryRecordsByYearMonth(yearMonthLocalDateJPStr, "yyyy-MM");
+//				https://pointsandlines.jp/server-side/java/model-and-view
+//				addObject()メソッドではView側へ渡すオブジェクトのデータを
+//				第一引数にテンプレートから参照する変数名、
+//				第二引数にオブジェクト名として格納している
+				mav.addObject("sampleDiaryList", sampleDiaryList);
+				// 「setViewNameの引数のファイル名」に対応した
+				// /myWebAppDietDiary/src/main/resources/templates内の
+				// ファイルを表示する
+				mav.setViewName("MyPage");
+		        return mav;
+	}
+
 	@RequestMapping("/sampleMyPageThisMonth")
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index2() {
