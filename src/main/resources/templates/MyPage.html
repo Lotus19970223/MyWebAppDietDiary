@@ -142,9 +142,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 
 <!-- 目標：利用開始日に応じて動的に年・月リンクを生成-->
 <!-- 現在：繰り返し文のテスト-->
-繰り返し文のテスト1
-<a th:each="year : ${#numbers.sequence(0, 2)}">
-	<a th:each="month : ${#numbers.sequence(0, 12)}">
+繰り返し文のテスト1<br>
+<a th:each="year : ${#numbers.sequence(1, 2)}">
+	<a th:each="month : ${#numbers.sequence(1, 12)}">
+	<div th:if="${month == 12}" th:text="|${year}年目の${month}月（年末）|"></div>
       <span th:text="|${year}年目の${month}月|"></span>
 	</a>
 </a>
