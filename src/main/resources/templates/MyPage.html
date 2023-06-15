@@ -145,10 +145,13 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 繰り返し文のテスト
 <br>
 <a th:each="year : ${#numbers.sequence(1, 3)}">
-<a th:text="|${year}年目|"><br></a>
-	<a th:each="month : ${#numbers.sequence(1, 12)}">
-	<span th:if="${month == 12}" th:text="|${year}年目の${month}月|"><br></span>
-      <span th:text="|${year}年目の${month}月|"></span>
+	<a th:text="|${year}年目|"><br>
+	</a>
+		<a th:each="month : ${#numbers.sequence(1, 12)}">
+     	 <span th:if="${month != 12}" th:text="|${year}年目の${month}月|">
+     	 </span>
+     	 <span th:if="${month == 12}" th:text="|${year}年目の${month}月|（改行）"><br>
+		</span>
 	</a>
 </a>
 <br>
