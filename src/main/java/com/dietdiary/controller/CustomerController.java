@@ -140,6 +140,9 @@ public class CustomerController {
 				DateTimeFormatter yearMonthFormat = DateTimeFormatter.ofPattern("yyyy-MM");
 				String yearMonthLocalDateJPStr = localDateJP.format(yearMonthFormat);
 
+				//View側にyearMonthLocalDateJPStrを渡す
+				mav.addObject("yearMonthLocalDateJPStr", yearMonthLocalDateJPStr);
+
 				// usersレコードを取得する 主キーのIDで検索するため1件（サンプル）のみ取得
 				UserEntity userEntity = userRepository.findUserRecordByUserID(1);
 				//View側にuserEntityを渡す
