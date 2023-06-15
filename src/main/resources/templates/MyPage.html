@@ -161,12 +161,12 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <div th:each="year : ${#numbers.sequence(1, 3)}">
 	<p th:text="|${year}年目|">
 	</p>
-		<div th:each="month : ${#numbers.sequence(1, 12)}">
+		<span th:each="month : ${#numbers.sequence(1, 12)}">
      	 <a th:if="${month != 12}" th:text="|${year}年目の${month}月|">
      	 </a>
      	 <a th:if="${month == 12}" th:text="|${year}年目の${month}月（改行）|">
 		</a>
-		</div>
+		</span>
 </div>
 <br>
 
