@@ -150,7 +150,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		<a th:each="month : ${#numbers.sequence(1, 12)}">
      	 <span th:if="${month != 12}" th:text="|${year}年目の${month}月|">
      	 </span>
-     	 <span th:if="${month == 12}" th:text="|${year}年目の${month}月|（改行）"><br>
+     	 <span th:if="${month == 12}" th:text="|${year}年目の${month}月（改行）|"><br>
 		</span>
 	</a>
 </a>
