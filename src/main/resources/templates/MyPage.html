@@ -142,13 +142,16 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 
 <!-- 目標：利用開始日に応じて動的に年・月リンクを生成-->
 <!-- 現在：繰り返し文のテスト-->
-繰り返し文のテスト1<br>
+繰り返し文のテスト
+<br>
 <a th:each="year : ${#numbers.sequence(1, 2)}">
+<span th:text="|${year}年目|"><br></span>
 	<a th:each="month : ${#numbers.sequence(1, 12)}">
-	<div th:if="${month == 12}" th:text="|${year}年目の${month}月（年末）|"></div>
+	<span th:if="${month == 12}" th:text="|${year}年目の${month}月|"><br></span>
       <span th:text="|${year}年目の${month}月|"></span>
 	</a>
 </a>
+<br>
 
 <br>
 2022年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageNovember"
