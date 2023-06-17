@@ -212,7 +212,31 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 	<span th:text="|${year}年|">
 	</span>
 	<br>
-		<span th:each="month : ${#numbers.sequence(userCreatedWhenStrMonth, monthLocalDateJPStr)}">
+		<span th:each="month : ${#numbers.sequence(1, monthLocalDateJPStr)}">
+		<!-- 基本は1～12月表示-->
+		<!-- 登録年かつ、登録月より前なら出力しない-->
+		<!-- 現在年かつ、現在月より後なら出力しない-->
+		<!-- 12月は改行を挟む-->
+     	 <a th:if="${month != 12}" th:text="|${month}月|">
+     	 </a>
+     	 <a th:if="${month == 12}" th:text="|${month}月|"><br>
+		</a>
+		</span>
+</div>
+<br>
+
+他の月の生成テスト（作成中）
+<br>
+<br>
+<div th:each="year : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
+	<span th:text="|${year}年|">
+	</span>
+	<br>
+		<!-- 基本は1～12月表示-->
+		<span th:each="month : ${#numbers.sequence(1, 12)}">
+		<!-- 登録年かつ、登録月より前なら出力しない-->
+		<!-- 現在年かつ、現在月より後なら出力しない-->
+		<!-- 12月は改行を挟む-->
      	 <a th:if="${month != 12}" th:text="|${month}月|">
      	 </a>
      	 <a th:if="${month == 12}" th:text="|${month}月|"><br>
