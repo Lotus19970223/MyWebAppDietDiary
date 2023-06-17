@@ -150,11 +150,35 @@ public class CustomerController {
 
 				//ユーザーの作成年月を文字列で表すオブジェクトを作成
 				//Localdate型でないとformatメソッドが使えないのでtoLocalDate()を使用
-				String userCreatedWhenStr = userEntity.getUserCreatedWhen()
+				String userCreatedWhenStrYearMonth = userEntity.getUserCreatedWhen()
 														.toLocalDate().format(yearMonthFormat);
 
-				//View側にuserCreatedWhenStrを渡す
-				mav.addObject("userCreatedWhenStr", userCreatedWhenStr);
+				//View側にuserCreatedWhenStrYearMonthを渡す
+				mav.addObject("userCreatedWhenStrYearMonth", userCreatedWhenStrYearMonth);
+
+				//年・月それぞれ用のDateTimeFormatterを作成
+				DateTimeFormatter yearFormat = DateTimeFormatter.ofPattern("yyyy");
+				DateTimeFormatter monthFormat = DateTimeFormatter.ofPattern("MM");
+
+				//ユーザーの作成年を文字列で表すオブジェクトを作成
+				String userCreatedWhenStrYear = userEntity.getUserCreatedWhen()
+														.toLocalDate().format(yearFormat);
+				//ユーザーの作成年を文字列で表すオブジェクトを作成
+				String userCreatedWhenStrMonth = userEntity.getUserCreatedWhen()
+														.toLocalDate().format(monthFormat);
+
+				//現在年を文字列で表すオブジェクトを作成
+				String yearLocalDateJPStr = localDateJP.format(yearFormat);
+				//現在月を文字列で表すオブジェクトを作成
+				String monthLocalDateJPStr = localDateJP.format(monthFormat);
+
+				//View側にユーザーの作成年・月、現在年・月の文字列を渡す
+				mav.addObject("userCreatedWhenStrYear", userCreatedWhenStrYear);
+				mav.addObject("userCreatedWhenStrMonth", userCreatedWhenStrMonth);
+				mav.addObject("yearLocalDateJPStr", yearLocalDateJPStr);
+				mav.addObject("monthLocalDateJPStr", monthLocalDateJPStr);
+
+
 
 				//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
 				//JPAにはRepositoryインターフェースに、命名規則に従ったメソッド名を書くとSQLを自動生成する機能がある
