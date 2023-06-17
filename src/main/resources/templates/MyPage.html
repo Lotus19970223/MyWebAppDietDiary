@@ -208,15 +208,14 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 他の月の生成テスト
 <br>
 <br>
-<div th:each="year : ${#numbers.sequence(1, 3)}">
-	<span th:text="|${year}年目|">
+<div th:each="year : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
+	<span th:text="|${year}年|">
 	</span>
 	<br>
-		<span th:each="month : ${#numbers.sequence(1, 12)}">
-     	 <a th:if="${month != 12}" th:text="|${year}年目の${month}月|">
+		<span th:each="month : ${#numbers.sequence(userCreatedWhenStrMonth, monthLocalDateJPStr)}">
+     	 <a th:if="${month != 12}" th:text="|${month}月|">
      	 </a>
-     	 <a th:if="${month == 12}" th:text="|${year}年目の${month}月（改行）|">
-     	 <br>
+     	 <a th:if="${month == 12}" th:text="|${month}月|"><br>
 		</a>
 		</span>
 </div>
