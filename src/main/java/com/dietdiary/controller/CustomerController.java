@@ -147,6 +147,15 @@ public class CustomerController {
 				UserEntity userEntity = userRepository.findUserRecordByUserID(1);
 				//View側にuserEntityを渡す
 				mav.addObject("userEntity", userEntity);
+
+				//ユーザーの作成年月を文字列で表すオブジェクトを作成
+				//Localdate型でないとformatメソッドが使えないのでtoLocalDate()を使用
+				String userCreatedWhenStr = userEntity.getUserCreatedWhen()
+														.toLocalDate().format(yearMonthFormat);
+
+				//View側にuserCreatedWhenStrを渡す
+				mav.addObject("userCreatedWhenStr", userCreatedWhenStr);
+
 				//参考：https://qiita.com/parapore/items/4acffd670fc913e05d85
 				//JPAにはRepositoryインターフェースに、命名規則に従ったメソッド名を書くとSQLを自動生成する機能がある
 				//現在の年月のレコードを取得する 現在の年月とフォーマット（いずれも文字列）を渡して使用
