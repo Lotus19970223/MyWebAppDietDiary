@@ -185,24 +185,20 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <br>
 月取得のテスト
 <br>
-<span th:text="|ユーザー作成年(文字列)は${userCreatedWhenStrYear}|">
+<span th:text="|ユーザー作成年は${userCreatedWhenStrYear}|">
 	</span>
 <br>
-<span th:text="|ユーザー作成月(文字列)は${userCreatedWhenStrMonth}|">
+<span th:text="|ユーザー作成月は${userCreatedWhenStrMonth}|">
 	</span>
 <br>
-<span th:text="|現在の年(文字列)は${yearLocalDateJPStr}|">
+<span th:text="|現在の年は${yearLocalDateJPStr}|">
 	</span>
 <br>
-<span th:text="|現在の月(文字列)は${monthLocalDateJPStr}|">
+<span th:text="|現在の月は${monthLocalDateJPStr}|">
 	</span>
 <br>
 <br><br>
-<!-- https://qiita.com/hhujk5/items/bee85334f4b85fefd569-->
-<div th:if="${userCreatedWhenStr gt yearMonthLocalDateJPStr}">falseなので表示されない</div>
-<br>
-<div th:if="${userCreatedWhenStr lt yearMonthLocalDateJPStr}">trueなので表示される</div>
-<br>
+
 
 
 他の月の生成テスト
@@ -212,6 +208,8 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 	<span th:text="|${year}年|">
 	</span>
 	<br>
+	<!-- -->
+	<!-- https://qiita.com/hhujk5/items/bee85334f4b85fefd569-->
 		<span th:each="month : ${#numbers.sequence(1, monthLocalDateJPStr)}">
 		<!-- 基本は1～12月表示-->
 		<!-- 登録年かつ、登録月より前なら出力しない-->
@@ -246,6 +244,8 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <br>
 
 
+<br>
+年月表示サンプル
 <br>
 2022年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageNovember"
 		 class="text-primary">11月</a>
