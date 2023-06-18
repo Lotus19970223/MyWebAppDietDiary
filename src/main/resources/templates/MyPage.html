@@ -201,29 +201,30 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 
 
 
-他の月の生成テスト
+
 <br>
-<br>
+<!--他の月の生成テスト<br>
 <div th:each="year : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
 	<span th:text="|${year}年|">
 	</span>
 	<br>
-	<!-- -->
-	<!-- https://qiita.com/hhujk5/items/bee85334f4b85fefd569-->
+
+	< https://qiita.com/hhujk5/items/bee85334f4b85fefd569
 		<span th:each="month : ${#numbers.sequence(1, monthLocalDateJPStr)}">
-		<!-- 基本は1～12月表示-->
-		<!-- 登録年かつ、登録月より前なら出力しない-->
-		<!-- 現在年かつ、現在月より後なら出力しない-->
-		<!-- 12月は改行を挟む-->
+
      	 <a th:if="${month != 12}" th:text="|${month}月|">
      	 </a>
      	 <a th:if="${month == 12}" th:text="|${month}月|"><br>
 		</a>
 		</span>
-</div>
+</div>-->
 <br>
 
-他の月の生成テスト（作成中）
+
+他の月の生成テスト（作成中）<br>
+目標<br>
+・登録年月以前、現在年月以降を非表示にする<br>
+・各年月にリンクを付けて該当する年月のマイページを表示する<br>
 <br>
 <br>
 <div th:each="year : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
