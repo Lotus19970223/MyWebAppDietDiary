@@ -222,19 +222,23 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 ・各年月にリンクを付けて該当する年月のマイページを表示する<br>
 <br>
 <br>
-<div th:each="year : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
-	<span th:text="|${year}年|">
+<div th:each="yearDisp : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
+	<span th:text="|${yearDisp}年|">
 	</span>
 	<br>
 		<!-- 基本は1～12月表示-->
-		<span th:each="month : ${#numbers.sequence(1, 12)}">
-		<!-- 登録年かつ、登録月より前なら出力しない-->
+		<span th:each="monthDisp : ${#numbers.sequence(1, 12)}">
+		<!-- 表示年＝登録年かつ、登録月より前なら出力しない-->
+     	 <th:block th:unless=
+     	 "${yearDisp == userCreatedWhenStrYear and monthDisp lt userCreatedWhenStrMonth}">
 		<!-- 現在年かつ、現在月より後なら出力しない-->
 		<!-- 12月は改行を挟む-->
-     	 <a th:if="${month != 12}" th:text="|${month}月|">
+
+     	 <a th:if="${monthDisp != 12}" th:text="|${monthDisp}月|">
      	 </a>
-     	 <a th:if="${month == 12}" th:text="|${month}月|"><br>
+     	 <a th:if="${monthDisp == 12}" th:text="|${monthDisp}月|"><br>
 		</a>
+		</th:block>
 		</span>
 </div>
 <br>
