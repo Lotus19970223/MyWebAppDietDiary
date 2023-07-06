@@ -250,19 +250,19 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 	<br>
 
 		<!-- 基本は1～12月表示-->
-		<span th:each="monthDisp : ${#numbers.sequence(1, 12)}">
+		<th:block th:each="monthDisp : ${#numbers.sequence(1, 12)}">
 		<!-- 表示年＝登録年かつ、登録月より前なら出力しない-->
-     	 <span th:unless= "${yearDisp == userCreatedWhenStrYear and monthDisp lt userCreatedWhenStrMonth}">
+     	 <th:block th:unless= "${yearDisp == userCreatedWhenStrYear and monthDisp lt userCreatedWhenStrMonth}">
 		<!-- 現在年かつ、現在月より後なら出力しない-->
 
 
-		 <th:block th:if="${monthDisp != 12}" th:text="|${monthDisp}月|"></th:block>
+		 <a th:if="${monthDisp != 12}" th:text="|${monthDisp}月|"></a>
 		 <!-- 12月は改行を挟む-->
-		 <th:block th:if="${monthDisp == 12}" th:text="|${monthDisp}月|"><br></th:block>
+		 <a th:if="${monthDisp == 12}" th:text="|${monthDisp}月|"><br></a>
 
 
-		</span>
-		</span>
+		</th:block>
+		</th:block>
 
 </th:block>
 <br>
