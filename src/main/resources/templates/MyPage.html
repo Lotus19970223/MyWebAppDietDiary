@@ -243,12 +243,12 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 </a>
 		 </th:block>
 
+		 <!--
 		 <th:block th:each="monthDisp : ${#numbers.sequence(1, 12)}" th:unless="${yearDisp eq yearLocalDateJPStr and monthDisp ge monthLocalDateJPStr}">
 		 <a th:text="|${monthDisp}月|">
 		 </a>
 		 </th:block>
 		  <!-- 12月は改行を挟む-->
-		 <th:block th:if="${monthDisp == 12}"><br></th:block>
 
 		</th:block>
 
