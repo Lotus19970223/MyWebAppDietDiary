@@ -258,6 +258,8 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 </th:block>
 <br>
 
+<br>
+<br>
 他の月の生成テスト（作成中）2<br>
 目標<br>
 ・登録年月以前、現在年月以降を非表示にする<br>
@@ -270,19 +272,20 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 	<br>
 
 		<!-- 表示年＝登録年の場合-->
-		<span th:if="${yearDisp2 == userCreatedWhenStrYear}">
+		<th:block th:if="${yearDisp2 == userCreatedWhenStrYear}">
 		<!-- 月は登録月からスタート、12月で改行-->
-		 <span th:each="$monthDisp2A : {#numbers.sequence(userCreatedWhenStrMonth, 12)}">
-		 </span>
+		 <th:block th:each="$monthDisp2A : {#numbers.sequence(userCreatedWhenStrMonth, 12)}">
+		 <a th:text="|${monthDisp}月|"></a>
+		 </th:block>
 		 <br>
-		 </span>
+		 </th:block>
 
 		<!-- 表示年＝現在年の場合-->
-		<span th:unless="${yearDisp2 == yearLocalDateJPStr}">
+		<th:block th:unless="${yearDisp2 == yearLocalDateJPStr}">
 		<!-- 月は1月からスタート、現在月まで-->
-		 <span th:each="$monthDisp2C : {#numbers.sequence(1, monthLocalDateJPStr)}">
-		 </span>
-		 </span>
+		 <th:block th:each="$monthDisp2C : {#numbers.sequence(1, monthLocalDateJPStr)}">
+		 </th:block>
+		 </th:block>
 
 </th:block>
 <br>
