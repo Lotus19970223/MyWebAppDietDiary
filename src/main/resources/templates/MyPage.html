@@ -281,7 +281,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 <a href="https://dummy" class="text-primary">
 		 <span th:text = "|${monthDisp2A}月|"></span>
 		 <!-- 表示月が12月の場合改行-->
-		 <span th:if = "${monthDisp2A} = 12"><br></span>
+		 <span th:if = "${monthDisp2A} == 12"><br></span>
 		 </a>
 		 </span>
 
@@ -291,7 +291,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 <a href="https://dummy" class="text-primary">
 		 <span th:text = "|${monthDisp2C}月|"></span>
 		 <!-- 表示月が12月の場合改行-->
-		 <span th:if = "${monthDisp2C} = 12"><br></span>
+		 <span th:if = "${monthDisp2C} == 12"><br></span>
 		 </a>
 		 </span>
 
