@@ -287,7 +287,9 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 
 		<!-- 表示年＞登録年かつ、表示年≠現在年なら1～12月表示-->
 		<!-- yearDisp2は数値なのでStrと直接比較するとfalseになる-->
-		<span th:if="${#strings.toString(yearDisp2) gt userCreatedWhenStrYear and (#strings.toString(yearDisp2) neq yearLocalDateJPStr)}" th:each="monthDisp2B : ${#numbers.sequence(1, 12)}">
+		<!-- 複数条件はかっこでくくれる？ ↓-->
+		<!-- https://qiita.com/yukiyoshimura/items/bb427382406a5b13eaa4-->
+		<span th:if="${#strings.toString(yearDisp2) gt userCreatedWhenStrYear and (#strings.toString(yearDisp2) ne yearLocalDateJPStr)}" th:each="monthDisp2B : ${#numbers.sequence(1, 12)}">
 		 <a href="https://dummy" class="text-primary">
 		 <span th:text = "|${monthDisp2B}月|"></span>
 		 <!-- 表示月が12月の場合改行-->
