@@ -267,14 +267,12 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 	<br>
 
 		<!-- 表示年＝登録年の場合-->
-		<span th:if="${yearDisp2 eq userCreatedWhenStrYear}">
+		<th:block th:if="${yearDisp2 eq userCreatedWhenStrYear}">
 		<!-- 月は登録月からスタート、12月で改行-->
-		 <span th:each="$monthDisp2A : {#numbers.sequence(userCreatedWhenStrMonth, 12)}">
-		 <a th:text="|${monthDisp2A}月|">
+		 <a th:each="$monthDisp2A : {#numbers.sequence(userCreatedWhenStrMonth, 12)}" th:text="|${monthDisp2A}月|">
 		 </a>
-		 </span>
 		 <br>
-		 </span>
+		 </th:block>
 
 		<!-- 表示年＝現在年の場合-->
 		<th:block th:unless="${yearDisp2 eq yearLocalDateJPStr}">
