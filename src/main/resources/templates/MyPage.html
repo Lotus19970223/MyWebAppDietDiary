@@ -285,9 +285,19 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 </a>
 		 </span>
 
-		<!-- 表示年＞登録年かつ、現在月より表示月が後なら出力しない（作成中）-->
+		<!-- 表示年＞登録年かつ、表示年≠現在年なら1～12月表示-->
 		<!-- yearDisp2は数値なのでStrと直接比較するとfalseになる-->
-		<span th:if="${#strings.toString(yearDisp2) gt userCreatedWhenStrYear}" th:each="monthDisp2C : ${#numbers.sequence(1, monthLocalDateJPStr)}">
+		<span th:if="${#strings.toString(yearDisp2) gt userCreatedWhenStrYear and #strings.toString(yearDisp2) neq yearLocalDateJPStr}" th:each="monthDisp2B : ${#numbers.sequence(1, 12)}">
+		 <a href="https://dummy" class="text-primary">
+		 <span th:text = "|${monthDisp2B}月|"></span>
+		 <!-- 表示月が12月の場合改行-->
+		 <span th:if = "${monthDisp2B} == 12"><br></span>
+		 </a>
+		 </span>
+
+		<!-- 表示年＝現在年かつ、現在月より表示月が後なら出力しない-->
+		<!-- yearDisp2は数値なのでStrと直接比較するとfalseになる-->
+		<span th:if="${#strings.toString(yearDisp2) eq yearLocalDateJPStr}" th:each="monthDisp2C : ${#numbers.sequence(1, monthLocalDateJPStr)}">
 		 <a href="https://dummy" class="text-primary">
 		 <span th:text = "|${monthDisp2C}月|"></span>
 		 <!-- 表示月が12月の場合改行-->
