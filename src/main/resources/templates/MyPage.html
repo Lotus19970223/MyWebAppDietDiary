@@ -268,7 +268,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <!-- 登録年～現在年の範囲で表示-->
 <th:block th:each="yearDisp2 : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
 
-	<th:block th:text="|${yearDisp2}年|"></th:block>
+	<th:block th:text="|${yearDisp2}年|">
 	<br>
 
 		<!-- 表示年＝登録年の場合-->
@@ -286,7 +286,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 <th:block th:each="$monthDisp2C : {#numbers.sequence(1, monthLocalDateJPStr)}">
 		 </th:block>
 		 </th:block>
-
+</th:block>
 </th:block>
 <br>
 
