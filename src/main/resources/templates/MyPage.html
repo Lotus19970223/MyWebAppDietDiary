@@ -256,6 +256,35 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <br>
 
 <br>
+他の月の生成テスト（作成中2）<br>
+目標<br>
+・登録年月以前、現在年月以降を非表示にする<br>
+・各年月にリンクを付けて該当する年月のマイページを表示する<br>
+<br>
+<!-- 登録年～現在年の範囲で表示-->
+<ul>
+        <li th:each="year : ${userCreatedWhenStrYear}..${yearLocalDateJPStr}">
+            <span th:text="${year} + '年'"></span>
+            <span th:if="${year == userCreatedWhenStrYear}">
+                <span th:each="month : ${userCreatedWhenStrMonth}..12">
+                    <span th:text="${month} + '月'"></span>
+                </span>
+            </span>
+            <span th:if="${year == yearLocalDateJPStr}">
+                <span th:each="month : 1..${monthLocalDateJPStr}">
+                    <span th:text="${month} + '月'"></span>
+                </span>
+            </span>
+            <span th:unless="${year == userCreatedWhenStrYear or year == yearLocalDateJPStr}">
+                <span th:each="month : 1..12">
+                    <span th:text="${month} + '月'"></span>
+                </span>
+            </span>
+        </li>
+    </ul>
+<br>
+
+<br>
 年月表示サンプル
 <br>
 2022年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageNovember"
