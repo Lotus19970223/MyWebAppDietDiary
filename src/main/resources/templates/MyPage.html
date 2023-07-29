@@ -45,6 +45,12 @@ br{
 }
 
 /* 改行用 */
+/* https://kasumiblog.org/a-text-br/ */
+a {
+   word-wrap:break-word;
+}
+
+/* 改行用 */
 /* https://qumeru.com/magazine/550 */
 /*
 span {
@@ -221,6 +227,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 ・登録年月以前、現在年月以降を非表示にする<br>
 ・各年月にリンクを付けて該当する年月のマイページを表示する<br>
 <br>
+<!-- 登録年～現在年の範囲で表示-->
 <th:block th:each="yearDisp : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
 
 	<th:block th:text="|${yearDisp}年|">
@@ -233,11 +240,11 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
      	 <th:block th:unless="${yearDisp eq userCreatedWhenStrYear and monthDisp2 le userCreatedWhenStrMonth}">
 		<!-- 表示年＝現在年かつ、現在月より後なら出力しない（作成予定）-->
 
-
-		 <a th:if="${monthDisp != 12}" th:text="|${monthDisp}月|"></a>
+		 <a th:if="${monthDisp != 12}" th:text="|${monthDisp}月|">
+		 </a>
 		 <!-- 12月は改行を挟む-->
-		 <a th:if="${monthDisp == 12}" th:text="|${monthDisp}月|"><br></a>
-
+		 <a th:if="${monthDisp == 12}" th:text="|${monthDisp}月|"><br>
+		 </a>
 
 		</th:block>
 		</th:block>

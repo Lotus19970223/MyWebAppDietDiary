@@ -196,6 +196,9 @@ public class CustomerController {
 		        return mav;
 	}
 
+
+
+
 	@RequestMapping("/sampleMyPageThisMonth")
 	//ModelAndViewオブジェクトを返す
 	public ModelAndView index2() {
