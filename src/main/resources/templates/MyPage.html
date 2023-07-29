@@ -263,22 +263,15 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <th:block th:each="yearDisp2 : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
 
 	<th:block th:text="|${yearDisp2}年|">
+	<br>
 	</th:block>
 	<br>
 
 		<!-- 表示年＝登録年の場合-->
-		<th:block th:if="${yearDisp2 eq userCreatedWhenStrYear}">
+		<th:block th:if="${yearDisp2 eq userCreatedWhenStrYear}" th:each="$monthDisp2A : {#numbers.sequence(userCreatedWhenStrMonth, 12)}">
 		<!-- 月は登録月からスタート、12月で改行-->
-		 <a th:each="$monthDisp2A : {#numbers.sequence(userCreatedWhenStrMonth, 12)}" th:text="|${monthDisp2A}月|">
+		 <a th:text="|${monthDisp2A}月|">
 		 </a>
-		 <br>
-		 </th:block>
-
-		<!-- 表示年＝現在年の場合-->
-		<th:block th:unless="${yearDisp2 eq yearLocalDateJPStr}">
-		<!-- 月は1月からスタート、現在月まで-->
-		 <th:block th:each="${monthDisp2C : {#numbers.sequence(1, monthLocalDateJPStr)}">
-		 </th:block>
 		 </th:block>
 
 </th:block>
