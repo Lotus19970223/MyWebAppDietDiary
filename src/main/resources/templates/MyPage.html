@@ -259,38 +259,6 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <br>
 
 <br>
-他の月の生成テスト（作成中2）<br>
-目標<br>
-・登録年月以前、現在年月以降を非表示にする<br>
-・各年月にリンクを付けて該当する年月のマイページを表示する<br>
-<br>
-<!-- 登録年～現在年の範囲で表示-->
-    <div th:with="startYear=${2022}, startMonth=${12}, currentYear=${2023}, currentMonth=${7}">
-        <span th:text="${startYear} + '年' + ${startMonth} + '月'"></span><br>
-        <span th:if="${startYear == currentYear}">
-            <span th:each="month : ${startMonth+1}..${currentMonth}">
-                <span th:text="${currentYear} + '年' + ${month} + '月'"></span><br>
-            </span>
-        </span>
-        <span th:unless="${startYear == currentYear}">
-            <span th:each="year : ${startYear+1}..${currentYear}">
-                <span th:text="${year} + '年1月'"></span><br>
-                <span th:if="${year == currentYear}">
-                    <span th:each="month : 2..${currentMonth}">
-                        <span th:text="${year} + '年' + ${month} + '月'"></span><br>
-                    </span>
-                </span>
-                <span th:unless="${year == currentYear}">
-                    <span th:each="month : 2..12">
-                        <span th:text="${year} + '年' + ${month} + '月'"></span><br>
-                    </span>
-                </span>
-            </span>
-        </span>
-    </div>
-<br>
-
-<br>
 年月表示サンプル
 <br>
 2022年   <a href="https://my-web-app-diet-diary.herokuapp.com/sampleMyPageNovember"
