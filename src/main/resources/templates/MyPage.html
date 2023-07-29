@@ -235,9 +235,8 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 	<br>
 
 		<!-- 基本は1～12月表示-->
-		<th:block th:each="monthDisp : ${#numbers.sequence(1, 12)}">
+		<th:block th:each="monthDisp : ${#numbers.sequence(1, 12)}" th:unless="${yearDisp eq userCreatedWhenStrYear and monthDisp le userCreatedWhenStrMonth}">
 		<!-- 表示年＝登録年かつ、登録月より前なら出力しない（作成中）-->
-     	 <th:block th:unless="${yearDisp eq userCreatedWhenStrYear and monthDisp le userCreatedWhenStrMonth}" th:text="|${yearDisp}+${userCreatedWhenStrMonth}|">
 		<!-- 表示年＝現在年かつ、現在月より後なら出力しない（作成予定）-->
 
 		 <a th:if="${monthDisp != 12}" th:text="|${monthDisp}月|">
@@ -247,7 +246,6 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 </a>
 		 <th:block th:if="${monthDisp == 12}"><br></th:block>
 
-		</th:block>
 		</th:block>
 
 </th:block>
