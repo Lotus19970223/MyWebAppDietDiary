@@ -39,34 +39,34 @@ idがweightおよびdiaryTextの要素を初期状態で非表示にしている
 
 /* 改行用 */
 /* https://fukuro-press.com/wp-sol-for-prob-that-br-not-work/ */
-/** brタグをどんな場合でも表示
+/** brタグをどんな場合でも表示*/
 br{
  display: block;
 }
-*/
+
 
 /* 改行用 */
-/* https://kasumiblog.org/a-text-br/
+/* https://kasumiblog.org/a-text-br/*/
 a {
    word-wrap:break-word;
 }
-*/
+
 
 /* 改行用 */
 /* https://qumeru.com/magazine/550 */
-/*
+/**/
 span {
   display: block;
 }
-*/
 
-/* 改行用 */
-/* https://csshtml.work/a-br/
+
+/* 改行用
+/* https://csshtml.work/a-br/*/
 
 lineBreak {
   display: block;
 }
-*/
+
 
 
 </style>
@@ -274,7 +274,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 	<br>
 
 		<!-- 表示年＝登録年の場合-->
-		<th:block th:if="${yearDisp2 == userCreatedWhenStrYear}">
+		<th:block th:if="${yearDisp2 eq userCreatedWhenStrYear}">
 		<!-- 月は登録月からスタート、12月で改行-->
 		 <th:block th:each="$monthDisp2A : {#numbers.sequence(userCreatedWhenStrMonth, 12)}">
 		 <a th:text="|${monthDisp}月|"></a>
@@ -283,7 +283,7 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 		 </th:block>
 
 		<!-- 表示年＝現在年の場合-->
-		<th:block th:unless="${yearDisp2 == yearLocalDateJPStr}">
+		<th:block th:unless="${yearDisp2 eq yearLocalDateJPStr}">
 		<!-- 月は1月からスタート、現在月まで-->
 		 <th:block th:each="$monthDisp2C : {#numbers.sequence(1, monthLocalDateJPStr)}">
 		 </th:block>
