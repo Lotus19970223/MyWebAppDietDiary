@@ -254,41 +254,28 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 
 <br>
 <br>
+
 他の月の生成テスト（作成中）2<br>
 目標<br>
 ・登録年月以前、現在年月以降を非表示にする<br>
 ・各年月にリンクを付けて該当する年月のマイページを表示する<br>
 <br>
 <!-- 登録年～現在年の範囲で表示-->
-<th:block th:each="yearDisp : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
+<th:block th:each="yearDisp2 : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
 
-	<th:block th:text="|${yearDisp}年|">
+	<th:block th:text="|${yearDisp2}年|">
 	<br>
 	</th:block>
 	<br>
 
-		<!-- 基本は1～12月表示-->
-		<th:block th:each="monthDisp : ${#numbers.sequence(1, 12)}">
-		<!-- 表示年＝登録年かつ、登録月より前なら出力しない（作成中）-->
-		<!-- 表示年＝現在年かつ、現在月より後なら出力しない（作成予定）-->
-
-		 <a th:text="|${monthDisp}月|"  th:unless="${yearDisp eq userCreatedWhenStrYear and monthDisp lt userCreatedWhenStrMonth}">
+		<!-- 表示年＝登録年の場合-->
+		<th:block th:if="${yearDisp2 eq userCreatedWhenStrYear}" th:each="monthDisp2A : ${#numbers.sequence(userCreatedWhenStrMonth, 12)}">
+		<!-- 月は登録月からスタート、12月で改行-->
+		 <a th:text="|${monthDisp2A}月|">
 		 </a>
 		 </th:block>
-
-		 <!--
-		 <th:block th:each="monthDisp : ${#numbers.sequence(1, 12)}" th:unless="${yearDisp eq yearLocalDateJPStr and monthDisp ge monthLocalDateJPStr}">
-		 <a th:text="|${monthDisp}月|">
-		 </a>
-		 </th:block>
-		  <!-- 12月は改行を挟む-->
-
-		</th:block>
 
 </th:block>
-<br>
-
-<br>
 <br>
 
 
