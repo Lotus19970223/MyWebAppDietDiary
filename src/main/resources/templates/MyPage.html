@@ -274,10 +274,11 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 	</th:block>
 	<br>
 
-		<!-- 基本は1～12月表示-->
-		<span th:each="monthDisp : ${#numbers.sequence(1, 12)}">
+
+		<!-- 表示年＝登録年かつ、登録月より前なら出力しない（作成中）-->
+		<span th:if="${yearDisp2 eq userCreatedWhenStrYear}" th:each="monthDisp2A : ${#numbers.sequence(userCreatedWhenStrMonth, 12)}">
 		 <a href="https://dummy" class="text-primary">
-		 <span th:text = "|${monthDisp}月|"></span>
+		 <span th:text = "|${monthDisp2}月|"></span>
 		 </a>
 		 </span>
 
