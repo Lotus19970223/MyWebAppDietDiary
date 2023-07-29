@@ -269,9 +269,10 @@ https://qiita.com/NagaokaKenichi/items/c6d1b76090ef5ef39482 -->
 <!-- 登録年～現在年の範囲で表示-->
 <th:block th:each="yearDisp2 : ${#numbers.sequence(userCreatedWhenStrYear, yearLocalDateJPStr)}">
 
-	<span th:text="|${yearDisp2}年|">
+	<th:block th:text="|${yearDisp2}年|">
 	<br>
-	</span>
+	</th:block>
+	<br>
 
 		<!-- 基本は1～12月表示-->
 		<span th:each="monthDisp : ${#numbers.sequence(1, 12)}">
